@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Activote.Models.Contact>
+@using Activote.Models
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Signed Up?</th>
+                <th>Committed?</th>
+                <th>Registered?</th>
+                <th>Plan?</th>
+                <th>Voted?</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Contact c in Model)
+            {
+                <tr data-id="@c.ContactID">
+                    <td class="tdView">@c.Name</td>
+                    <td class="tdView">@c.Email</td>
+                    <td>@Html.Raw(c.PersonID.HasValue ? "Yes" : "No")</td>
+                    <td>@Html.Raw(c.Committed.HasValue ? "Yes" : "No")</td>
+                    <td>@Html.Raw(c.Registered.HasValue ? "Yes" : "No")</td>
+                    <td>@Html.Raw(c.Plan.HasValue ? "Yes" : "No")</td>
+                    <td>@Html.Raw(c.Voted.HasValue ? "Yes" : "No")</td>
+                    <td class="tdView">
+                        <a href="javascript: contacts.sendInvite(@c.ContactID)">Send Invite</a>
+                        @if (!c.PersonID.HasValue)
+                        {
+                            <span>
+                                |
+                                <a href="javascript: contacts.deleteContact(@c.ContactID)"> Delete </a>
+                            </span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p style="font-style:italic">Add your first contact below ...</p>
+}
+<div>
+    <h3>New Contact</h3>
+    <form class="form" id="formNewContact">
+        @Html.AntiForgeryToken()
+        <div>
+            First Name:<br />
+            <input type="text" name="FirstName" class="form-control" />
+        </div>
+        <div>
+            Last name:<br />
+            <input type="text" name="LastName" class="form-control" />
+        </div>
+        <div>
+            Email:<br />
+            <input type="text" name="Email" class="form-control" />
+        </div>
+        <div style="margin-top:15px;">
+            <input type="submit" class="btn btn-primary" value="Add" />
+        </div>
+    </form>
+</div>
+
+<script>
+    $(function () {
+        $("#formNewContact").submit(function () {
+            contacts.addContact();
+            return false;
+        });
+    });
+</script>

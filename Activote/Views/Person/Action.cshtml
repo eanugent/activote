@@ -1,0 +1,37 @@
+﻿@model Activote.Models.Person
+
+@{
+    ViewBag.Title = "Action";
+}
+<h2>Your Action</h2>
+
+<div>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="cb  Commit" 
+           @Html.Raw(Model.CommitmentDateTime.HasValue ? "checked='checked'" : "")
+           data-tag="commit" onchange="action.cbChanged(this)">
+        <label class="form-check-label" for="cbCommit">I am committed to voting on November 6, 2018</label>
+    </div>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="cbRegistered"
+           @Html.Raw(Model.IsRegisteredDateTime.HasValue ? "checked='checked'" : "")
+           data-tag="registered" onchange="action.cbChanged(this)">
+        <label class="form-check-label" for="cbRegistered">My voter's registration is up-to-date</label>
+    </div>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="cbPlan"
+           @Html.Raw(Model.PlanCompletedDateTime.HasValue ? "checked='checked'" : "")
+           data-tag="plan" onchange="action.cbChanged(this)">
+        <label class="form-check-label" for="cbPlan">I have a plan to vote</label>
+    </div>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="cbVoted"
+           @Html.Raw(Model.VotedDateTime.HasValue ? "checked='checked'" : "")
+           data-tag="voted" onchange="action.cbChanged(this)">
+        <label class="form-check-label" for="cbVoted">I voted</label>
+    </div>
+</div>
+
+@section scripts{    
+    <script src="~/Scripts/custom/Action.js"></script>
+}

@@ -1,0 +1,15 @@
+﻿@model Activote.Models.Contact
+
+@{ 
+    Layout = null;
+}
+
+<p>
+    @Model.FirstName!
+</p>
+<p>
+    @Model.ParentPerson.Name  wants you to join them in making a difference this November ...
+</p>
+<p>
+    <a href="@Model.LoginURL">Tell @Model.ParentPerson.FirstName you're in</a>
+</p>

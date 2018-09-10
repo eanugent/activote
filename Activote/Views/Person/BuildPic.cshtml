@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "BuildPic";
+}
+
+<div style="margin-top:20px;">
+    <input type="file" id="uploadPic" onchange="pictureChanged()" />
+    <div style="margin-top:15px;">
+        <div id="editor" style="width: 50%;">
+
+        </div>
+    </div>
+    <div style="margin-top:15px;">
+        <a href="#" id="btnDownload" onclick="saveImage()" class="btn btn-primary" download="register.jpg">Download</a>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/hammer.min.js"></script>
+    <script src="~/Scripts/ImageEditor.js"></script>
+    <script>
+        var editor;
+        $(function () {
+
+            var options = {
+                imageUrls: [
+                    { url: activoteGlobal.sitePath + 'Content/img/anon.png', closeButtonRequire: false, clickToSelect: true },
+                    { url: activoteGlobal.sitePath + 'Content/img/registered.png', closeButtonRequire: false, clickToSelect: false }
+                ],
+                width: $("#editor").width(),
+                height: $("#editor").width(),
+                onInitCompleted: function () {
+
+                }
+            };
+            editor = $('#editor').ImageEditor(options); // init a DIV as ImageEditor
+        });
+
+        function pictureChanged() {
+            var reader = new FileReader();
+            var file = $("#uploadPic")[0].files[0];
+
+            reader.onloadend = function () {
+                editor.setImage({ url: reader.result, closeButtonRequire: false, clickToSelect: true }, 0, true);
+            }
+            if (file) {
+                reader.readAsDataURL(file);
+            } 
+        }
+
+        function saveImage() {
+            var wd = $("#editor").width();
+            var scale = 1080 / wd;
+            var canvas = editor.mergeImage(1080,1080, scale);
+            var dt = canvas.toDataURL('image/jpeg');
+            $("#btnDownload")[0].href = dt;            
+        }
+    </script>
+}
+

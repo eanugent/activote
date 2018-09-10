@@ -1,0 +1,17 @@
+﻿@using Activote.Models
+
+<div>
+    <form class="form-group" id="loginForm">
+        Enter your email address to receive your login link:<br />
+        <input type="text" class="form-control" id="txtEmail" />
+        <input type="submit" class="btn btn-success" value="Send" />
+    </form>
+</div>
+
+<h3>OR</h3>
+
+@Html.Partial("_Signup", new Person())
+
+@section scripts{
+    <script src="~/Scripts/custom/Login.js"></script>
+}

@@ -1,0 +1,26 @@
+﻿@model Activote.Models.Person
+
+    <h2>Signup</h2>
+
+    <div>
+        <form class="form" action="~/Person/Signup" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="ParentPersonID" value="@Model.ParentPersonID" />
+            <input type="hidden" name="ContactID" value="@ViewBag.ContactID" />
+            <div>
+                First Name:<br />
+                <input type="text" name="FirstName" value="@Model.FirstName" class="form-control" />
+            </div>
+            <div>
+                Last name:<br />
+                <input type="text" name="LastName" value="@Model.LastName" class="form-control" />
+            </div>
+            <div>
+                Email:<br />
+                <input type="text" name="Email" value="@Model.Email" class="form-control" />
+            </div>
+            <div style="margin-top:15px;">
+                <input type="submit" class="btn btn-primary" value="Submit" />
+            </div>
+        </form>
+    </div>

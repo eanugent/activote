@@ -1,0 +1,40 @@
+﻿
+@{
+    Layout = null;
+}
+<!-- The top of file index.html -->
+<html itemscope itemtype="http://schema.org/Article">
+<head>
+    <!-- BEGIN Pre-requisites -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
+    </script>
+    <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer>
+    </script>
+    <!-- END Pre-requisites -->
+    <script>
+        function start() {
+            gapi.load('auth2', function () {
+                auth2 = gapi.auth2.init({
+                    client_id: '@Activote.Utilities.AppSettings["YoutubeClientID"]',
+                    scope: 'https://www.googleapis.com/auth/youtube.upload'
+                });
+            });
+        }
+    </script>
+</head>
+<body>
+    <div>
+        Sign-in
+        <button id="signinButton">Sign in with Google</button>
+        <script>
+            function signInCallback(obj) {
+                console.log(obj.code);
+            }
+            $('#signinButton').click(function () {
+                // signInCallback defined in step 6.
+                auth2.grantOfflineAccess().then(signInCallback);
+            });
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+﻿@model Activote.Models.Person
+
+@{
+    ViewBag.Title = "Signup";
+}
+
+@if(ViewBag.ErrorMsg != null)
+{
+<h3>@ViewBag.ErrorMsg</h3>
+}
+
+@Html.Partial("_Signup", Model)

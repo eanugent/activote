@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<form action="Upload" enctype="multipart/form-data" method="post">
+
+    <div>
+        <p>
+            Upload Video: <input type="file" accept="video/*" id="capture" name="uploaded" capture="camcorder" />
+        </p>
+    </div>
+    <div>
+        <input type="submit"value="Upload" />
+    </div>
+</form>
