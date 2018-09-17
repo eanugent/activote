@@ -1,6 +1,9 @@
 ﻿@model Activote.Models.Person
 
-    <h2>Signup</h2>
+<h2>Signup</h2>
+
+@if (false)
+{
 
     <div>
         <form class="form" action="~/Person/Signup" method="post">
@@ -24,3 +27,8 @@
             </div>
         </form>
     </div>
+}
+else
+{
+    <span style="font-style:italic">Soon to come ...</span>
+}

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Activote.Models.State>
+@using Activote.Models
+
+<h2>Check Registration by State</h2>
+
+<select id="slState" onchange="stateSelected()" class="form-control">
+    <option value="">SELECT YOUR STATE</option>
+    @foreach (State s in Model)
+    {
+        <option value="@s.RegistrationURL">@s.StateName</option>
+    }
+</select>
+<span class="hidden-md hidden-lg">
+    <br />
+    <button class="btn btn-primary" onclick="stateSelected()">Go</button>
+</span>
+@section scripts{
+    <script>
+        $(function () {
+            $.ajax({
+                url: "http://ip-api.com/json",
+                success: function (data) {
+                    if (data != null && data.region != null) {
+                        $("#slState").val(data.region);
+                    }
+                }
+            });
+        });
+        function stateSelected() {
+            if ($("#slState").val() != "") {
+                window.open($("#slState").val());
+            }
+        }
+    </script>
+}

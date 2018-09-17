@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Activote.Models.Frame>
+
+<div id="imgEditor" style="width: 50%;">
+
+</div>
+
+<hr />
+
+<div>
+    <p>
+        Try a different frame:
+    </p>
+    @foreach (var f in Model)
+    {
+        <img src="@f.URL" style="width:200px;border:solid;padding:10px;" onclick="action.registered.changeFrame('@f.URL')" />
+    }
+</div>
+<div style="margin-top:20px;">
+    @*<button class="btn btn-default" onclick="action.registered.loadMakePublic('dv5')">Done</button>*@
+    <a class="btn btn-default" id="btnDownloadImage" download="register.jpg" href="#" onclick="action.registered.downloadImage()">Download</a>
+</div>
