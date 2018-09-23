@@ -12,14 +12,16 @@ namespace Activote.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TrackedGUIDAccess
+    public partial class Photo
     {
-        public int TrackedGUIDAccessID { get; set; }
-        public System.Guid GUID { get; set; }
-        public System.DateTime AccessDatetime { get; set; }
-        public string IP { get; set; }
-        public Nullable<System.DateTime> ActionCompleted { get; set; }
+        public System.Guid PhotoGUID { get; set; }
+        public Nullable<int> ActionID { get; set; }
+        public Nullable<int> PersonID { get; set; }
+        public System.DateTime DateCreated { get; set; }
+        public bool MakePublic { get; set; }
+        public byte[] PhotoBytes { get; set; }
     
-        public virtual TrackedGUID TrackedGUID { get; set; }
+        public virtual Action Action { get; set; }
+        public virtual Person Person { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace Activote.Controllers
         // GET: Action
         public ActionResult _Registered()
         {
-            return View();
+            return PartialView();
         }
 
         public ActionResult _InitRegistered()
@@ -27,15 +27,51 @@ namespace Activote.Controllers
             return PartialView(new activoteEntities().States.OrderBy(s => s.StateName).ToList());
         }
 
-        public ActionResult _UploadImageView()
+        public ActionResult RegistrationConfirmed()
         {
             TrackedGUIDAccess.TrackedActionCompleted();
+            return Json(new { success = true });
+        }
+
+        public ActionResult _UploadImageView()
+        {
+
             return PartialView();
         }
 
         public ActionResult _ChooseFrame(string actionTag)
         {
             return PartialView(db.Frames.Where(f => f.Action.ActionTag == actionTag).ToList());
+        }
+
+        public ActionResult _MakePicPublic()
+        {
+            return PartialView();
+        }
+
+        [ValidateAntiForgeryToken()]
+        public ActionResult UploadPic(string pic, string actionTag)
+        {
+            pic = pic.Replace("data:image/jpeg;base64,", "").Replace("data:image/png;base64,", "");
+            var newPhoto = new Photo()
+            {
+                PhotoBytes = Convert.FromBase64String(pic),
+                MakePublic = true
+            };
+            newPhoto.ActionID = db.Actions.FirstOrDefault(a => a.ActionTag == actionTag).ActionID;
+            if(Person.LoggedInPersonID > -1)
+            {
+                newPhoto.PersonID = Person.LoggedInPersonID;
+            }
+            db.Photos.Add(newPhoto);
+            db.SaveChanges();
+
+            return Json(new { success = true });
+        }
+
+        public ActionResult _DownloadImageView()
+        {
+            return PartialView();
         }
     }
 }

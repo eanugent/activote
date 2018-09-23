@@ -14,14 +14,24 @@ namespace Activote.Models
     
     public partial class Frame
     {
-        public int FrameID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Frame()
+        {
+            this.Actions = new HashSet<Action>();
+        }
+    
+        public System.Guid FrameGUID { get; set; }
         public int ActionID { get; set; }
         public string FrameName { get; set; }
         public string FrameAuthor { get; set; }
         public string FrameAuthorURL { get; set; }
         public bool IsSquare { get; set; }
-        public string FrameFilename { get; set; }
+        public string FrameExtension { get; set; }
+        public byte[] FrameBytes { get; set; }
+        public System.DateTime DateAdded { get; set; }
     
         public virtual Action Action { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Action> Actions { get; set; }
     }
 }

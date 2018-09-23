@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Activote.Models.Action>
+
+@{
+    ViewBag.Title = "UploadFrame";
+}
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label class="col-md-2">Action</label>
+        <div class="col-md-10">
+            <select class="form-control" name="ActionID">
+                @foreach (var a in Model)
+                {
+                    <option value="@a.ActionID">@a.ActionName</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2">Name</label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" name="FrameName" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2">Author</label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" name="FrameAuthor" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2">Author URL</label>
+        <div class="col-md-10">
+            <input type="text" class="form-control" name="FrameAuthorURL" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2">Square?</label>
+        <div class="col-md-10">
+            <input type="checkbox" name="IsSquare" value="true" />
+            <input type="hidden" name="IsSquare" value="false" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-2">
+            <input type="file" class="form-control" name="file" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-2">
+            <input type="submit" value="Submit" class="btn btn-success" />
+        </div>
+    </div>
+</form>
+
+@*@section scripts{
+    <script>
+        $(function () {
+            $("form").submit(function () {
+
+            });
+        });
+    </script>
+    }*@

@@ -3,7 +3,14 @@
 <div id="imgEditor" style="width: 50%;">
 
 </div>
+<canvas id="downloadCanvas" style="display:none;"></canvas>
 
+<button type="button" class="btn btn-default" onclick="action.adjustScale(false);">-</button>
+<br />
+<br />
+<button type="button" class="btn btn-default" onclick="action.adjustScale(true);">+</button>
+
+<input value="1" style="display:none;" id="imgScale" />
 <hr />
 
 <div>
@@ -12,10 +19,13 @@
     </p>
     @foreach (var f in Model)
     {
-        <img src="@f.URL" style="width:200px;border:solid;padding:10px;" onclick="action.registered.changeFrame('@f.URL')" />
+        <img src="@f.URL" style="width:200px;border:solid;padding:10px;" onclick="action.changeFrame('@f.URL')" />
     }
 </div>
 <div style="margin-top:20px;">
-    @*<button class="btn btn-default" onclick="action.registered.loadMakePublic('dv5')">Done</button>*@
-    <a class="btn btn-default" id="btnDownloadImage" download="register.jpg" href="#" onclick="action.registered.downloadImage()">Download</a>
+    <button class="btn btn-default" onclick="action.chooseFrame('dv5')">Done</button>
 </div>
+
+<form id="frmChooseFrame">
+    @Html.AntiForgeryToken()
+</form>

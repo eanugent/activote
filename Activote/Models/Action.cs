@@ -17,8 +17,9 @@ namespace Activote.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Action()
         {
-            this.Frames = new HashSet<Frame>();
             this.TrackedGUIDs = new HashSet<TrackedGUID>();
+            this.Frames = new HashSet<Frame>();
+            this.Photos = new HashSet<Photo>();
         }
     
         public int ActionID { get; set; }
@@ -27,10 +28,14 @@ namespace Activote.Models
         public System.DateTime OpenDatetime { get; set; }
         public System.DateTime CloseDatetime { get; set; }
         public string ActionTag { get; set; }
+        public System.Guid DefaultFrameGUID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Frame> Frames { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TrackedGUID> TrackedGUIDs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Frame> Frames { get; set; }
+        public virtual Frame Frame { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Photo> Photos { get; set; }
     }
 }

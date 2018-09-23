@@ -46,7 +46,7 @@
             @*<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>*@
         </footer>
     </div>
-    <input type="hidden" id="SitePath" value="~/" />
+    <input type="hidden" id="SitePath" value="~/" />    
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
@@ -55,6 +55,7 @@
         var activoteGlobal = {};
         $(function () {
             activoteGlobal.sitePath = $("#SitePath").val();
+            activoteGlobal.personID = @Person.LoggedInPersonID;
         });
     </script>
     @RenderSection("scripts", required: false)

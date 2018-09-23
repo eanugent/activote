@@ -1,63 +1,86 @@
 ﻿@{
+    /**/
+
     ViewBag.Title = "Index";
 }
 @if (ViewBag.InitView != null)
 {
-<input type="hidden" id="InitView" value="@ViewBag.InitView" />
+    <input type="hidden" id="InitView" value="@ViewBag.InitView" />
 
-<div class="screen-div">
-    <h3>Screen 1</h3>
-    <div id="dv1">
-
+    <div id="dvSlideShow">
+        <img style="width:25%" />
+        <img style="width:25%" />
+        <img style="width:25%" />
+        <img style="width:25%" />
     </div>
-</div>
 
+    <div class="screen-div">
+        <h3>Screen 1</h3>
+        <div id="dv1">
 
-<div class="screen-div">
-    <h3>Screen 2</h3>
-    <div id="dv2">
-
+        </div>
     </div>
-</div>
 
-<div class="screen-div">
-    <h3>Screen 3</h3>
-    <div id="dv3">
 
+    <div class="screen-div">
+        <h3>Screen 2</h3>
+        <div id="dv2">
+
+        </div>
     </div>
-</div>
 
-<div class="screen-div">
-    <h3>Screen 4</h3>
-    <div id="dv4">
+    <div class="screen-div">
+        <h3>Screen 3</h3>
+        <div id="dv3">
 
+        </div>
     </div>
-</div>
 
-<div class="screen-div">
-    <h3>Screen 5</h3>
-    <div id="dv5">
+    <div class="screen-div">
+        <h3>Screen 4</h3>
+        <div id="dv4">
 
+        </div>
     </div>
-</div>
 
-@section scripts{
-    <script src="~/Scripts/hammer.min.js"></script>
-    <script src="~/Scripts/ImageEditor.js"></script>
-    <script src="~/Scripts/custom/Action.js"></script>
-    <script src="~/Scripts/custom/Registered.js"></script>
+    <div class="screen-div">
+        <h3>Screen 5</h3>
+        <div id="dv5">
 
-}
+        </div>
+    </div>
 
-@section styles{
-    <style>
-        .screen-div {
-            border: solid;
-            padding: 10px;
-        }
-    </style>
+    <div class="screen-div">
+        <h3>Screen 6</h3>
+        <div id="dv6">
 
-}
+        </div>
+    </div>
+
+    <div class="screen-div">
+        <h3>Screen 7</h3>
+        <div id="dv7">
+
+        </div>
+    </div>
+
+    @section scripts{
+        <script src="~/Scripts/hammer.min.js"></script>
+        <script src="~/Scripts/ImageEditor.js"></script>
+        <script src="~/Scripts/custom/Action.js"></script>
+        <script src="~/Scripts/custom/Registered.js"></script>
+
+    }
+
+    @section styles{
+        <style>
+            .screen-div {
+                border: solid;
+                padding: 10px;
+            }
+        </style>
+
+    }
 }
 else
 {
