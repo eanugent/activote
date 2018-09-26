@@ -1,0 +1,59 @@
+h1,h2,h3,h4,h5,h6, h1 span, h3 span, h2 span, h4 span{
+    @include header-font;
+    & a{
+        @include header-font;
+        &:hover{
+			
+        }
+    }
+}
+p,a,li{
+    @include body-font(normal);
+//    font-size: 18px;
+//    line-height: 30px;
+}
+strong{
+    @include body-font(normal);
+}
+article ul li{
+    list-style-position: outside;
+    list-style-type: circle;
+    margin: 0 0 12px 24px;
+}
+article ol li{
+    list-style-type:upper-roman;
+    margin: 0 0 12px 24px;
+    list-style-position: inside;
+}
+h2{
+    
+}
+a{
+    //color: $yellow-main;
+    @include body-font(400);
+    &:hover{
+        text-decoration: underline;
+        //color: $yellow-main;
+    }
+    &.btn{
+        @include header-font;
+        padding: 0;
+    }
+    &.btn:hover{
+        text-decoration: none;
+    }
+}
+input[type="submit"]{
+    @include header-font;
+    &:hover{
+        text-decoration: none;
+    }
+}
+
+//@media (min-width: 576px) { ... }
+//
+//@media (min-width: 768px) { ... }
+//
+//@media (min-width: 992px) { ... }
+//
+//@media (min-width: 1200px) { ... }

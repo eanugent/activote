@@ -1,0 +1,46 @@
+//@import 'reset';
+@import 'webfonts';
+@import 'partials';
+@import 'variables';
+@import 'type';
+
+
+// PARTIAL REFERENCE \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+//@include header-font($weight)
+//@include body-font($weight)
+//@include vertical-center
+//@include horizontal-center
+//@include full-fixed
+//@include propertyAnim($property,$speed,$easing)
+//@include dropshadow($h,$v,$blur,$spread,$hex)
+//@include dropshadow-opacity($h,$v,$blur,$spread,$r,$g,$b,$a)
+//@include circle
+//@include inline-block
+//@include placeholder-properties-1
+//@include place-holder-1
+
+
+//@import 'nav';
+
+/* Variables*/
+
+//@media (min-width: 576px) { ... }
+//@media (min-width: 768px) { ... }
+//@media (min-width: 992px) { ... }
+//@media (min-width: 1200px) { ... }
+
+
+// Styles affecting downward
+//@media (max-width: 575.98px) { ... }
+//@media (max-width: 767.98px) { ... }
+//@media (max-width: 991.98px) { ... }
+//@media (max-width: 1199.98px) { ... }
+
+
+// Styles for specific views
+//@media (max-width: 575.98px) { ... }
+//@media (min-width: 576px) and (max-width: 767.98px) { ... }
+//@media (min-width: 768px) and (max-width: 991.98px) { ... }
+//@media (min-width: 992px) and (max-width: 1199.98px) { ... }
+//@media (min-width: 1200px) { ... }

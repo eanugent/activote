@@ -1,0 +1,76 @@
+@mixin header-font{
+    font-family: 'HeadingPro-Bold', 'Helvetica Neue','Roboto',Arial,Helvetica,sans-serif;;
+}
+@mixin body-font($weight){
+    font-family: 'TTRoundsNeue','Helvetica Neue Light', 'Helvetica Neue',Arial,sans-serif;
+    font-weight: $weight; 
+}
+
+@mixin full-fixed{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+@mixin propertyAnim($property,$speed,$easing){
+    -webkit-transition: $property $speed $easing;
+    -moz-transition: $property $speed $easing;
+    -ms-transition: $property $speed $easing;
+    -o-transition: $property $speed $easing;
+    -transition: $property $speed $easing;
+}
+@mixin dropshadow($h,$v,$blur,$spread,$hex){
+    -webkit-box-shadow: $h $v $blur $spread $hex;
+    -moz-box-shadow: $h $v $blur $spread $hex;
+    box-shadow: $h $v $blur $spread $hex;
+}
+@mixin dropshadow-opacity($h,$v,$blur,$spread,$r,$g,$b,$a){
+    -webkit-box-shadow: $h $v $blur $spread rgba($r,$g,$b,$a);
+    -moz-box-shadow: $h $v $blur $spread rgba($r,$g,$b,$a);
+    box-shadow: $h $v $blur $spread rgba($r,$g,$b,$a);
+}
+@mixin circle{
+    -moz-border-radius: 900px 900px 900px 900px;
+    -webkit-border-radius: 900px 900px 900px 900px;
+    border-radius: 900px 900px 900px 900px;
+}
+@mixin rounded($radius){
+    -moz-border-radius: $radius $radius $radius $radius;
+    -webkit-border-radius: $radius $radius $radius $radius;
+    border-radius: $radius $radius $radius $radius;
+}
+
+@mixin inline-block{
+    display: inline-block;
+    &:nth-child(n+2){
+        margin-left: -4px;
+    }
+}
+@mixin green-gradient{
+    background: #108f4d;
+    background: -moz-linear-gradient(top, #108f4d 0%, #4daf7c 100%);
+    background: -webkit-linear-gradient(top, #108f4d 0%,#4daf7c 100%);
+    background: linear-gradient(to bottom, #108f4d 0%,#4daf7c 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#108f4d', endColorstr='#4daf7c',GradientType=0 );
+}
+
+
+@mixin placeholder-properties-1{
+//    text-transform: uppercase;
+//    font-size: 18px;
+//    color: $text-grey;
+}
+
+@mixin place-holder-1{
+    ::-webkit-input-placeholder {
+        @include placeholder-properties-1;
+    }
+    :-moz-placeholder { /* Firefox 18- */
+       @include placeholder-properties-1; 
+    }
+    ::-moz-placeholder {  /* Firefox 19+ */
+       @include placeholder-properties-1;
+    }
+    :-ms-input-placeholder {  
+       @include placeholder-properties-1; 
+    }
+}
