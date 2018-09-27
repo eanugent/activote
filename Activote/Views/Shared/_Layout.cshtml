@@ -5,8 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
+    
+    @Styles.Render("~/Content/css/bootstrap.min.css")
     @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/main.css")
+    
     @RenderSection("styles", required: false)
 </head>
 <body>
@@ -47,9 +50,9 @@
         </footer>
     </div>
     <input type="hidden" id="SitePath" value="~/" />    
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    @Scripts.Render("~/Content/lib/bootstrap.min.js")
 
     <script>
         var activoteGlobal = {};

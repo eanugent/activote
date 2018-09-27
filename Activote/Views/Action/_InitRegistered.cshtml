@@ -1,9 +1,15 @@
-﻿<div>
-    <p>Are you registered to vote?</p>
-    <p>
-        <button class="btn btn-default" onclick="action.registered.loadCheckReg('dv2')">Check Registration</button>
+﻿<div class="message">
+  
+   <div class="message">
+    <h1 class="stars">Are you registered to vote?</h1>
+    <p>Check if you’re registered to vote. If you’re registered, post a souped-up photo to social media saying that you are.</p>
+    </div>
+    <div class="action">
+        <p>
+            <button class="btn btn-default" onclick="action.registered.loadCheckReg('dv2')">Check Registration</button>
+            </p>
+        <p>
+            <button class="btn btn-default" onclick="action.registered.registrationConfirmed('dv3')">Yes</button>
         </p>
-    <p>
-        <button class="btn btn-default" onclick="action.registered.registrationConfirmed('dv3')">Yes</button>
-    </p>
+    </div>
 </div>
