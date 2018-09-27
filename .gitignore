@@ -671,9 +671,6 @@ Activote/Properties/PublishProfiles/CustomProfile.pubxml
 Activote/Properties/PublishProfiles/CustomProfile.pubxml.user
 Activote/Scripts/bootstrap.js
 Activote/Scripts/bootstrap.min.js
-Activote/Scripts/custom/Action.js
-Activote/Scripts/custom/Contacts.js
-Activote/Scripts/custom/Login.js
 Activote/Scripts/hammer.min.js
 Activote/Scripts/ImageEditor.js
 Activote/Scripts/jquery-3.3.1.intellisense.js
