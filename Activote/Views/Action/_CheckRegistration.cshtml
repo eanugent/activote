@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<Activote.Models.State>
 @using Activote.Models
 
+<section class="content">
 <h2>Check Registration by State</h2>
 
 <select id="slState" onchange="action.registered.stateSelected()" class="form-control">
@@ -14,3 +15,4 @@
     <br />
     <button class="btn btn-primary" onclick="action.registered.stateSelected()">Go</button>
 </span>
+</section>
