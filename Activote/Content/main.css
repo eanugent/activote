@@ -66,4 +66,7 @@ input[type="submit"] {
   input[type="submit"]:hover {
     text-decoration: none; }
 
+.screens-container {
+  height: 100vh; }
+
 /* Variables*/

@@ -42,13 +42,14 @@
             </div>            
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container-fluid body-content screens-container">
         @RenderBody()
-        @*<hr />*@
-        <footer>
-            @*<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>*@
-        </footer>
+        
     </div>
+    @*<hr />*@
+    <footer>
+        @*<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>*@
+    </footer>
     <input type="hidden" id="SitePath" value="~/" />    
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
