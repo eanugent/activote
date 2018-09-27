@@ -6,6 +6,7 @@
             url: activoteGlobal.sitePath + "Action/_CheckRegistration",            
             success: function (data) {
                 $("#" + targetDiv).html(data);
+                action.activateDiv(targetDiv);
                 if (action.state != null) {
                     $("#slState").val(action.state);
                 }
