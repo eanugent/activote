@@ -10,18 +10,19 @@ $(function () {
         }
     });
 
+    action.activateDiv = function (id) {
+        $(".screen").removeClass("active");
+        $("#" + id).addClass("active");
+    }
+
     if ($("#InitView").length > 0) {
         $.ajax({
             url: activoteGlobal.sitePath + "Action/" + $("#InitView").val(),
             success: function (data) {
                 $("#dv1").html(data);
+                action.activateDiv("dv1");
             }
         })
-    }
-
-    action.activateDiv = function (id) {
-        $(".screen").removeClass("active");
-        $("#" + id).addClass("active");
     }
 
     action.loadUploadImg = function (targetDiv) {
