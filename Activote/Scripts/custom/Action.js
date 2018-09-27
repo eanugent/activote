@@ -19,11 +19,17 @@ $(function () {
         })
     }
 
+    action.activateDiv = function (id) {
+        $(".screen").removeClass("active");
+        $("#" + id).addClass("active");
+    }
+
     action.loadUploadImg = function (targetDiv) {
         $.ajax({
             url: activoteGlobal.sitePath + "Action/_UploadImageView",
             success: function (data) {
                 $("#" + targetDiv).html(data);
+                action.activateDiv(targetDiv);
             }
         });
     };
@@ -40,6 +46,7 @@ $(function () {
                 success: function (data) {
                     $("#" + targetDiv).html(data);
                     action.initImgEditor(reader.result);
+                    action.activateDiv(targetDiv);
                 }
             });
         }
@@ -112,6 +119,7 @@ $(function () {
             url: activoteGlobal.sitePath + "Action/_MakePicPublic",
             success: function (data) {
                 $("#" + targetDiv).html(data);
+                action.activateDiv(targetDiv);
             }
         });
     };
@@ -159,6 +167,7 @@ $(function () {
             url: activoteGlobal.sitePath + "Action/_DownloadImageView",
             success: function (data) {
                 $("#" + targetDiv).html(data);
+                action.activateDiv(targetDiv);
                 $("#finalImage").attr("src", action.imgString);
             }
         });
