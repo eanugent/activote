@@ -116,11 +116,11 @@ input[type="submit"] {
     .screens-container .screen h1 {
       font-size: 2.5em; }
       .screens-container .screen h1.stars {
-        padding-top: 1em;
+        padding-top: 1.05em;
         background-repeat: no-repeat;
         background-image: url(img/head-stars.svg);
         background-position: top center;
-        background-size: 2.25em; }
+        background-size: 2.5em; }
     .screens-container .screen p {
       font-size: 1em;
       line-height: 1.45em; }
@@ -133,6 +133,26 @@ input[type="submit"] {
       .screens-container .screen .action .action-btn {
         font-size: 1.5em;
         letter-spacing: .02em; }
+    .screens-container .screen .photo-upload {
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1; }
+      .screens-container .screen .photo-upload + label {
+        width: 100%;
+        height: 13em;
+        background-color: #D8E3E6;
+        display: table;
+        border: .2em solid white;
+        background-image: url(img/icon-camera-text.svg);
+        background-position: center 55%;
+        background-repeat: no-repeat;
+        background-size: 35%;
+        margin-bottom: 2em;
+        border-radius: 2em;
+        cursor: pointer; }
     @media (max-width: 340px) {
       .screens-container .screen {
         font-size: 1rem; } }
