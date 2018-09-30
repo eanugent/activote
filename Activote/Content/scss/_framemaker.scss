@@ -1,0 +1,22 @@
+.frames{
+    width: 100vw;
+    overflow-x: auto;
+    padding-left: 20px;
+    white-space: nowrap;
+    
+    .frame{
+        width: 5em;
+        height: 5em;
+        display: inline-block;
+        margin-left: 6px;
+        background-color: $grey;
+        @include rounded(.75em);
+        overflow: hidden;
+        -webkit-overflow-scrolling: touch;
+        
+        img{
+            width: 100%;
+            height: auto;
+        }
+    }
+}

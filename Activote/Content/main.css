@@ -172,4 +172,24 @@ input[type="submit"] {
 .blue {
   background-color: #0799F5; }
 
+.frames {
+  width: 100vw;
+  overflow-x: auto;
+  padding-left: 20px;
+  white-space: nowrap; }
+  .frames .frame {
+    width: 5em;
+    height: 5em;
+    display: inline-block;
+    margin-left: 6px;
+    background-color: #D8E3E6;
+    -moz-border-radius: 0.75em 0.75em 0.75em 0.75em;
+    -webkit-border-radius: 0.75em 0.75em 0.75em 0.75em;
+    border-radius: 0.75em 0.75em 0.75em 0.75em;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch; }
+    .frames .frame img {
+      width: 100%;
+      height: auto; }
+
 /* Variables*/
