@@ -1,0 +1,18 @@
+.btn{
+    @include rounded(0);
+}
+.action-btn{
+    @include header-font;
+    width: 100%;
+    max-width: 600px;
+    background-color: $black;
+    color: white;
+    text-align: center;
+    padding: .25em;
+    text-transform: uppercase;
+    transition: filter .5s ease-out;
+    filter: saturate(1);
+    &:hover{
+        filter: saturate(3);
+    }
+}

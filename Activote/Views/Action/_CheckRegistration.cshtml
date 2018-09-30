@@ -1,9 +1,12 @@
 ﻿@model IEnumerable<Activote.Models.State>
 @using Activote.Models
 
-<section class="content">
-<h2>Check Registration by State</h2>
+<div class="screen-content col-10 col-md-4">
+<div class="message">
+    <h1 class="stars">Check Registration by State</h1>
+</div>
 
+<div class="action">
 <select id="slState" onchange="action.registered.stateSelected()" class="form-control">
     <option value="">SELECT YOUR STATE</option>
     @foreach (State s in Model)
@@ -13,6 +16,7 @@
 </select>
 <span>
     <br />
-    <button class="btn btn-primary" onclick="action.registered.stateSelected()">Go</button>
+    <button class="btn btn-default action-btn red" onclick="action.registered.stateSelected()">Go</button>
 </span>
-</section>
+</div>
+</div>
