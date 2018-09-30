@@ -49,8 +49,8 @@ namespace Activote.Controllers
             return PartialView();
         }
 
-        [ValidateAntiForgeryToken()]
-        public ActionResult UploadPic(string pic, string actionTag)
+        //[ValidateAntiForgeryToken()]
+        public string UploadPic(string pic, string actionTag)
         {
             pic = pic.Replace("data:image/jpeg;base64,", "").Replace("data:image/png;base64,", "");
             var newPhoto = new Photo()
@@ -66,7 +66,7 @@ namespace Activote.Controllers
             db.Photos.Add(newPhoto);
             db.SaveChanges();
 
-            return Json(new { success = true });
+            return newPhoto.PhotoGUID.ToString();
         }
 
         public ActionResult _DownloadImageView()
