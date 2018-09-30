@@ -40,16 +40,26 @@ $(function () {
         var file = $("#uploadPic")[0].files[0];
 
         reader.onloadend = function () {
+            var imgData = reader.result;
             $.ajax({
-                url: activoteGlobal.sitePath + "Action/_ChooseFrame",
-                data: { actionTag: action.currentActionTag },
+                url: activoteGlobal.sitePath + "Action/UploadPic",
+                data: { pic: imgData, actionTag: action.currentActionTag, __RequestVerificationToken: $("[name=__RequestVerificationToken]").val() },
                 method: "POST",
-                success: function (data) {
-                    $("#" + targetDiv).html(data);
-                    action.initImgEditor(reader.result);
-                    action.activateDiv(targetDiv);
+                success: function (imgID) {
+                    $.ajax({
+                        url: activoteGlobal.sitePath + "Action/_ChooseFrame",
+                        data: { actionTag: action.currentActionTag },
+                        method: "POST",
+                        success: function (data) {
+                            $("#" + targetDiv).html(data);
+                            action.initImgEditor(activoteGlobal.sitePath + "Home/Photo/" + imgID);
+                            action.activateDiv(targetDiv);
+                        }
+                    });
                 }
             });
+
+            
         }
         if (file) {
             reader.readAsDataURL(file);
@@ -63,8 +73,8 @@ $(function () {
                 { url: imgData, closeButtonRequire: false, clickToSelect: true },
                 { url: activoteGlobal.sitePath + 'Home/Frame/?actionTag=' + action.currentActionTag, closeButtonRequire: false, clickToSelect: false }
             ],
-            width: $("#imgEditor").width(),
-            height: $("#imgEditor").width()
+            width: 1000,
+            height: 1000
         };
         action.imgEditor = $('#imgEditor').ImageEditor(options);
         $("#imgEditor span").css("transition", "all 0.25s ease-out 0s");
@@ -94,14 +104,17 @@ $(function () {
 
     action.chooseFrame = function (targetDiv) {
         var canvas = action.imgEditor.mergeImage();
-        action.imgString = canvas.toDataURL('image/jpeg');
+        action.imgString = canvas.toDataURL();
 
+       /* $("#dv7").append("<img id=myImg />");
+        $("#myImg").attr("src", action.imgString);
+        */
         var image = new Image();
         image.onload = function () {
             var dlCanvas = document.getElementById("downloadCanvas");
             image.width = 1080;
             image.height = 1080;
-            
+
             var ctx = dlCanvas.getContext("2d");
             ctx.clearRect(0, 0, dlCanvas.width, dlCanvas.height);
             dlCanvas.width = image.width;
