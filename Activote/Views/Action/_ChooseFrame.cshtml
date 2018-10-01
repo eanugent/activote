@@ -1,37 +1,30 @@
 ﻿@model IEnumerable<Activote.Models.Frame>
+<div id="imgEditor" style="width: 50%;">
 
-<div class="container-fluid">
-    <div id="imgEditor" class="row justify-content-center">
-
-    <div class="screen-content col-10 col-md-4">
-        <div id="imgEditor" style="width: 50%;">
-
-        </div>
-        <canvas id="downloadCanvas" style="display:none;"></canvas>
-
-        <button type="button" class="btn btn-default" onclick="action.adjustScale(false);">-</button>
-        <button type="button" class="btn btn-default" onclick="action.adjustScale(true);">+</button>
-
-        <input value="1" style="display:none;" id="imgScale" />
-        <hr />
-    </div>
-    <div class="frames">
-        @foreach (var f in Model) {
-        <div class="frame">
-            <img src="@f.URL" onclick="action.changeFrame('@f.URL')" />
-        </div>
-        }
-    </div>
-    <div class="screen-content col-10 col-md-4">
-        <div class="action">
-            <div style="margin-top:20px;">
-                <button class="btn btn-default action-btn red" onclick="action.chooseFrame('dv5')">Done</button>
-            </div>
-        </div>
-    </div>
-
-    <form id="frmChooseFrame">
-        @Html.AntiForgeryToken()
-    </form>
-    </div>
 </div>
+<canvas id="downloadCanvas" style="display:none;"></canvas>
+
+<button type="button" class="btn btn-default" onclick="action.adjustScale(false);">-</button>
+<br />
+<br />
+<button type="button" class="btn btn-default" onclick="action.adjustScale(true);">+</button>
+
+<input value="1" style="display:none;" id="imgScale" />
+<hr />
+
+<div>
+    <p>
+        Try a different frame:
+    </p>
+    @foreach (var f in Model)
+    {
+        <img src="@f.URL" style="width:200px;border:solid;padding:10px;" onclick="action.changeFrame('@f.URL')" />
+    }
+</div>
+<div style="margin-top:20px;">
+    <button class="btn btn-default" onclick="action.chooseFrame()">Done</button>
+</div>
+
+<form id="frmChooseFrame">
+    @Html.AntiForgeryToken()
+</form>

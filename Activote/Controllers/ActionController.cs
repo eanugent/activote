@@ -12,12 +12,12 @@ namespace Activote.Controllers
     {
         private activoteEntities db = new activoteEntities();
         // GET: Action
-        public ActionResult _Registered()
+        public ActionResult _RegisteredWelcome()
         {
             return PartialView();
         }
 
-        public ActionResult _InitRegistered()
+        public ActionResult _IsRegistered()
         {
             return PartialView();
         }
