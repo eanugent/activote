@@ -1,4 +1,80 @@
 #main-nav{
     padding: 0;
     position: absolute;
+    
+    .navbar-header{
+        
+        .navbar-brand{
+            text-indent: -9999px;
+            overflow: hidden;
+            width: 152px;
+            background-repeat: no-repeat;
+            background-image: url(img/logo.svg);
+            background-position: center center;
+            background-size: 82%;
+            height: 44px;
+            background-color: $black;
+            margin-left: 1px;
+        }
+        .navbar-toggler{
+            height: 44px;
+            float: left;
+            @include rounded(0);
+            padding: 11px 14px;
+            background-color: $red;
+            transition: all .2s ease-out;
+            &:hover{
+                background-color: $red;
+            }
+            
+            &.collapsed{
+                background-color: $black;
+                .navbar-toggler-icon{
+                    background-image: url(img/icon-menu.svg) !important;
+                }
+            }
+            .navbar-toggler-icon{
+                width: 15px;
+                height: 11px;
+                background-repeat: no-repeat;
+                background-image: url(img/icon-x.svg);
+                background-position: top center;
+                background-size: contain;
+            }
+        }
+    }
+    #main-nav-menu{
+        width: 100vw;
+        position: absolute;
+        z-index: -1;
+        .menu-wrapper{
+            height: 100vh;
+            background-color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        ul{
+            align-items: center;
+            li{
+                display: contents;
+                a{
+                    @include header-font;
+                    text-transform: uppercase;
+                    color: white;
+                    letter-spacing: .008em;
+                    font-size: 5.5vh;
+                    transition: color .25s ease-in-out;
+                    @media (min-width: 992px) { 
+                        font-size: 6vh; 
+                    }
+                    
+                    &:hover{
+                        text-decoration: none;
+                        color: $red;
+                    }
+                }
+            }
+        }
+    }
 }
