@@ -115,10 +115,12 @@ input[type="submit"] {
     padding: 11px 14px;
     background-color: #E81F4E;
     transition: all .2s ease-out; }
-    #main-nav .navbar-header .navbar-toggler:hover {
-      background-color: #E81F4E; }
+    #main-nav .navbar-header .navbar-toggler:focus {
+      outline: none; }
     #main-nav .navbar-header .navbar-toggler.collapsed {
       background-color: #171918; }
+      #main-nav .navbar-header .navbar-toggler.collapsed:hover {
+        background-color: #E81F4E; }
       #main-nav .navbar-header .navbar-toggler.collapsed .navbar-toggler-icon {
         background-image: url(img/icon-menu.svg) !important; }
     #main-nav .navbar-header .navbar-toggler .navbar-toggler-icon {
