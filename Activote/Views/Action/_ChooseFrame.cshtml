@@ -1,32 +1,34 @@
-﻿@model IEnumerable<Activote.Models.Frame>
+@model IEnumerable<Activote.Models.Frame>
 
-<input type="hidden" id="defaultFrameID" value="@ViewBag.DefaultFrameID" />
-<div id="imgEditor" style="width: 50%;">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="screen-content col-10 col-md-4">
+                <div id="imgEditor" style="width: 100%;">
 
-</div>
-<canvas id="downloadCanvas" style="display:none;"></canvas>
+                </div>
+                <canvas id="downloadCanvas" style="display:none;"></canvas>
 
-<button type="button" class="btn btn-default" onclick="action.adjustScale(false);">-</button>
-<br />
-<br />
-<button type="button" class="btn btn-default" onclick="action.adjustScale(true);">+</button>
+                <button type="button" class="btn btn-default" onclick="action.adjustScale(false);">-</button>
+                <button type="button" class="btn btn-default" onclick="action.adjustScale(true);">+</button>
 
-<input value="1" style="display:none;" id="imgScale" />
-<hr />
+                <input value="1" style="display:none;" id="imgScale" />
+            </div>
 
-<div>
-    <p>
-        Try a different frame:
-    </p>
-    @foreach (var f in Model)
-    {
-        <img src="@f.URL" style="width:200px;border:solid;padding:10px;" onclick="action.changeFrame('@f.URL', '@f.FrameGUID.ToString()')" />
-    }
-</div>
-<div style="margin-top:20px;">
-    <button class="btn btn-default" onclick="action.chooseFrame()">Done</button>
-</div>
-
-<form id="frmChooseFrame">
-    @Html.AntiForgeryToken()
-</form>
+            <div class="frames">
+                @foreach (var f in Model)
+                {
+                    <div class="frame">
+                        <img src="@f.URL" onclick="action.changeFrame('@f.URL', '@f.FrameGUID.ToString()')" />
+                    </div>
+                }
+            </div>
+            <div class="screen-content col-10 col-md-4">
+                <div class="action">
+                    <button class="btn btn-default action-btn red" onclick="action.chooseFrame()">Done</button>
+                </div>
+            </div>
+            <form id="frmChooseFrame">
+                @Html.AntiForgeryToken()
+            </form>
+        </div>
+    </div>
