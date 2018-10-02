@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<Activote.Models.Frame>
+
+<input type="hidden" id="defaultFrameID" value="@ViewBag.DefaultFrameID" />
 <div id="imgEditor" style="width: 50%;">
 
 </div>
@@ -18,7 +20,7 @@
     </p>
     @foreach (var f in Model)
     {
-        <img src="@f.URL" style="width:200px;border:solid;padding:10px;" onclick="action.changeFrame('@f.URL')" />
+        <img src="@f.URL" style="width:200px;border:solid;padding:10px;" onclick="action.changeFrame('@f.URL', '@f.FrameGUID.ToString()')" />
     }
 </div>
 <div style="margin-top:20px;">

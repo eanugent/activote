@@ -96,6 +96,7 @@ $(function () {
                 action.imgEditor.selectImage(0); // select most bottom image as current operating image
                 action.usrImageOrigPoint = action.imgEditor.activeImage.centerPoint;
                 alert(action.imgEditor.activeImage.img.naturalHeight + ' x ' + action.imgEditor.activeImage.img.naturalWidth);
+                action.selectedFrameID = $("#defaultFrameID").val();
             }
         };
         action.imgEditor = $('#imgEditor').ImageEditor(options);
@@ -119,8 +120,9 @@ $(function () {
         action.imgEditor.scaleImage(val, val);
     };
 
-    action.changeFrame = function (newURL) {
-        action.imgEditor.setImage({ url: newURL, closeButtonRequire: false, clickToSelect: false }, 1, true);
+    action.changeFrame = function (newURL, frameID) {
+        action.selectedFrameID = frameID;
+        action.imgEditor.setImage({ url: newURL, closeButtonRequire: false, clickToSelect: false }, 1, false);
     };
 
     action.chooseFrame = function () {
@@ -184,10 +186,20 @@ $(function () {
         ctx.scale((1/sc), (1/sc));
         ctx.drawImage(frameImg, 0, 0, frameImg.width, frameImg.height);
 
-        action.imgDownloadString = dlCanvas.toDataURL("image/jpeg");
+        //action.imgDownloadString = dlCanvas.toDataURL("image/jpeg");
+        $.ajax({
+            url: activoteGlobal.sitePath + "Action/BuildImage",
+            data: {
+                pic: action.usrImage, actionTag: action.currentActionTag, frameID: action.selectedFrameID,
+                x: x, y: y, scale: sc, width: w, height: h},
+            method: "POST",
+            success: function (data) {
+                action.imgDownloadString = activoteGlobal.sitePath + "Home/Photo/" + data;
+            }
+        })
 
-        //action.loadMakePicPublic();
-        action.loadDownloadImage();
+        action.loadMakePicPublic();
+        //action.loadDownloadImage();
     }
 
     action.loadMakePicPublic = function () {
