@@ -1,12 +1,21 @@
 ﻿$(function () {
     action.registered = {};
     action.currentActionTag = "Registered";
-    action.registered.loadCheckReg = function (targetDiv) {
+
+    action.registered.start = function () {
+        $.ajax({
+            url: activoteGlobal.sitePath + "Action/_IsRegistered",
+            success: function (data) {
+                action.showNextStep(data);
+            }
+        });
+    }
+
+    action.registered.loadCheckReg = function () {
         $.ajax({
             url: activoteGlobal.sitePath + "Action/_CheckRegistration",            
             success: function (data) {
-                $("#" + targetDiv).html(data);
-                action.activateDiv(targetDiv);
+                action.showNextStep(data);
                 if (action.state != null) {
                     $("#slState").val(action.state);
                 }
@@ -14,7 +23,7 @@
         });
     };
 
-    action.registered.registrationConfirmed = function (targetDiv) {
+    action.registered.registrationConfirmed = function () {
         $.ajax({
             url: activoteGlobal.sitePath + "Action/RegistrationConfirmed",
             method: "POST",
@@ -25,7 +34,7 @@
             }
         });
 
-        action.loadUploadImg(targetDiv);
+        action.loadUploadImg();
     }
 
     action.registered.stateSelected = function () {
