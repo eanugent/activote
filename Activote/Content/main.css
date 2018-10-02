@@ -95,6 +95,66 @@ input[type="submit"] {
 #main-nav {
   padding: 0;
   position: absolute; }
+  #main-nav .navbar-header .navbar-brand {
+    text-indent: -9999px;
+    overflow: hidden;
+    width: 152px;
+    background-repeat: no-repeat;
+    background-image: url(img/logo.svg);
+    background-position: center center;
+    background-size: 82%;
+    height: 44px;
+    background-color: #171918;
+    margin-left: 1px; }
+  #main-nav .navbar-header .navbar-toggler {
+    height: 44px;
+    float: left;
+    -moz-border-radius: 0 0 0 0;
+    -webkit-border-radius: 0 0 0 0;
+    border-radius: 0 0 0 0;
+    padding: 11px 14px;
+    background-color: #E81F4E;
+    transition: all .2s ease-out; }
+    #main-nav .navbar-header .navbar-toggler:hover {
+      background-color: #E81F4E; }
+    #main-nav .navbar-header .navbar-toggler.collapsed {
+      background-color: #171918; }
+      #main-nav .navbar-header .navbar-toggler.collapsed .navbar-toggler-icon {
+        background-image: url(img/icon-menu.svg) !important; }
+    #main-nav .navbar-header .navbar-toggler .navbar-toggler-icon {
+      width: 15px;
+      height: 11px;
+      background-repeat: no-repeat;
+      background-image: url(img/icon-x.svg);
+      background-position: top center;
+      background-size: contain; }
+  #main-nav #main-nav-menu {
+    width: 100vw;
+    position: absolute;
+    z-index: -1; }
+    #main-nav #main-nav-menu .menu-wrapper {
+      height: 100vh;
+      background-color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+    #main-nav #main-nav-menu ul {
+      align-items: center; }
+      #main-nav #main-nav-menu ul li {
+        display: contents; }
+        #main-nav #main-nav-menu ul li a {
+          font-family: 'HeadingPro-Bold', 'Helvetica Neue','Roboto',Arial,Helvetica,sans-serif;
+          text-transform: uppercase;
+          color: white;
+          letter-spacing: .008em;
+          font-size: 5.5vh;
+          transition: color .25s ease-in-out; }
+          @media (min-width: 992px) {
+            #main-nav #main-nav-menu ul li a {
+              font-size: 6vh; } }
+          #main-nav #main-nav-menu ul li a:hover {
+            text-decoration: none;
+            color: #E81F4E; }
 
 .screens-container {
   height: 100vh;
@@ -186,6 +246,9 @@ input[type="submit"] {
 
 .blue {
   background-color: #0799F5; }
+
+.black {
+  background-color: #171918; }
 
 .frames {
   width: 100vw;

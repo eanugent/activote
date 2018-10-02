@@ -1,12 +1,14 @@
 ﻿@model IEnumerable<Activote.Models.State>
 @using Activote.Models
 
-<div class="screen-content col-10 col-md-4">
+<div class="screen-content col-12 col-md-5">
     <div class="message">
         <h1 class="stars">Encourage your friends to vote by posting a selfie.</h1>
         <p>Check if you&#39;re registered to vote. If you&#39;re registered, post a souped-up photo to social media saying that you are.</p>
     </div>
-    <div>
-        <button class="btn btn-default action-btn red" type="button" onclick="action.registered.start()">Start</button>
+    <div class="action">
+        <p>
+        <button class="btn btn-default action-btn black" type="button" onclick="action.registered.start()">Start</button>
+        </p>
     </div>
 </div>
