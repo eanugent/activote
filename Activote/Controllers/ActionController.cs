@@ -53,7 +53,7 @@ namespace Activote.Controllers
         }
 
         //[ValidateAntiForgeryToken()]
-        public string BuildImage(string pic, string actionTag, Guid frameID, float x, float y, float scale, float width, float height)
+        public string BuildImage(string pic, string actionTag, Guid frameID, float x, float y, float scale, float width, float height, bool makePublic)
         {
             pic = pic.Replace("data:image/jpeg;base64,", "").Replace("data:image/png;base64,", "");
 
@@ -61,6 +61,7 @@ namespace Activote.Controllers
 
             Graphics g = Graphics.FromImage(img);
             var picBytes = Convert.FromBase64String(pic);
+            
             g.DrawImage(Image.FromStream(new MemoryStream(picBytes)), x, y, width, height );
 
             var frm = db.Frames.FirstOrDefault(f => f.FrameGUID == frameID);
@@ -72,7 +73,7 @@ namespace Activote.Controllers
             var newPhoto = new Photo()
             {
                 PhotoBytes = outStream.ToArray(),
-                MakePublic = true
+                MakePublic = makePublic
             };
             newPhoto.ActionID = db.Actions.FirstOrDefault(a => a.ActionTag == actionTag).ActionID;
             if(Person.LoggedInPersonID > -1)

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>Activote</title>
     
     @Styles.Render("~/Content/css/bootstrap.min.css")
     @Scripts.Render("~/bundles/modernizr")
@@ -15,21 +15,19 @@
 <body>
     <div id="main-nav" class="navbar navbar-inverse fixed-top">
         <div class="container-fluid">
-           <div class="row">
             <div class="navbar-header">
-                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#main-nav-menu" aria-controls="main-nav-menu" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav-menu" aria-controls="main-nav-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 @Html.ActionLink("Activote", "Signup", "Person", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div id="main-nav-menu" class="navbar-collapse collapse">
-               <div class="menu-wrapper">
                 <ul class="nav navbar-nav">
                     @if (Person.LoggedInPerson != null)
                     {
                         <li>@Html.ActionLink("Action", "Action", "Person")</li>
                         <li>@Html.ActionLink("My Contacts", "Contacts", "Person")</li>
-                        <li><a href="#" class="text-nowrap">Logged in as @Person.LoggedInPerson.Name</a></li>
+                        <li><a href="#">Logged in as @Person.LoggedInPerson.Name</a></li>
                         <li><a href="~/Person/Logout">Log Off</a></li>
                     }
                     else
@@ -39,9 +37,7 @@
                     <li><a href="~/Home/StateTest">Check Registration</a></li>
                     <li></li>
                 </ul>
-                </div>
             </div>            
-        </div>
         </div>
     </div>
     <div class="container-fluid body-content screens-container text-center">
