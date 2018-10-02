@@ -58,7 +58,8 @@ article ol li {
 
 a {
   font-family: 'TTRoundsNeue','Arial Rounded','Helvetica Neue Light', 'Helvetica Neue',Arial,sans-serif;
-  font-weight: 400; }
+  font-weight: 400;
+  color: #0799F5; }
   a:hover {
     text-decoration: underline; }
   a.btn {
@@ -97,7 +98,8 @@ input[type="submit"] {
 
 .screens-container {
   height: 100vh;
-  background-color: #171918; }
+  background-color: #171918;
+  overflow: hidden; }
   .screens-container .screen {
     height: 100vh;
     width: 100vw;
@@ -113,6 +115,19 @@ input[type="submit"] {
       transition: opacity .5s ease-in-out;
       opacity: 1;
       z-index: 1; }
+    .screens-container .screen.overlay {
+      background-color: #171918;
+      transition: top .5s ease-in-out;
+      opacity: 1;
+      z-index: 2;
+      top: 100vh; }
+      .screens-container .screen.overlay.active {
+        -webkit-transition-delay: 0s;
+        transition-delay: 0s;
+        transition: top .5s ease-in-out;
+        top: 0; }
+      .screens-container .screen.overlay h1, .screens-container .screen.overlay p, .screens-container .screen.overlay span {
+        color: white; }
     .screens-container .screen h1 {
       font-size: 2.5em; }
       .screens-container .screen h1.stars {
