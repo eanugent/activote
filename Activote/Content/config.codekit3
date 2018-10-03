@@ -203,14 +203,14 @@
 		},
 	"\/frames\/registered.png": {
 		"ft": 32768,
-		"iS": 79123,
+		"iS": 75590,
 		"oA": 0,
 		"oAP": "\/frames\/registered.png",
 		"oF": 0,
-		"oIPL": 1,
-		"opt": 1,
+		"oIPL": 0,
+		"opt": 0,
 		"oT": 1,
-		"q": 73
+		"q": 100
 		},
 	"\/frames\/registered2.png": {
 		"ft": 32768,
@@ -218,8 +218,8 @@
 		"oA": 0,
 		"oAP": "\/frames\/registered2.png",
 		"oF": 0,
-		"oIPL": 1,
-		"opt": 1,
+		"oIPL": 0,
+		"opt": 0,
 		"oT": 1,
 		"q": 100
 		},

@@ -208,7 +208,7 @@ input[type="submit"] {
     transition: opacity .5s ease-in-out;
     position: absolute;
     background-color: #F4F4F4;
-    font-size: 1.1rem; }
+    font-size: 1.25rem; }
     .screens-container .screen.active {
       -webkit-transition-delay: .5s;
       transition-delay: .5s;
@@ -300,7 +300,7 @@ input[type="submit"] {
         background-size: contain; }
     @media (max-width: 340px) {
       .screens-container .screen {
-        font-size: .9rem; } }
+        font-size: 1rem; } }
     @media (min-width: 768px) {
       .screens-container .screen {
         font-size: 1.5rem; } }
