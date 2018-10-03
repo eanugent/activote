@@ -9,7 +9,7 @@
                 action.showNextStep(data);
             }
         });
-    }
+    };
 
     action.registered.loadCheckReg = function () {
         $.ajax({
@@ -35,7 +35,7 @@
         });
 
         action.loadUploadImg();
-    }
+    };
 
     action.registered.stateSelected = function () {
         if ($("#slState").val() != "") {
@@ -46,6 +46,6 @@
             $("#dvCheckRegOverlay").addClass("active");
             $("#dvCheckRegOverlay").show();
         }
-    }
+    };
     
 });

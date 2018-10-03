@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -61,14 +62,20 @@ namespace Activote.Controllers
 
             Graphics g = Graphics.FromImage(img);
             var picBytes = Convert.FromBase64String(pic);
-            
-            g.DrawImage(Image.FromStream(new MemoryStream(picBytes)), x, y, width, height );
+
+            g.DrawImage(Image.FromStream(new MemoryStream(picBytes)), x, y, width, height);
 
             var frm = db.Frames.FirstOrDefault(f => f.FrameGUID == frameID);
             g.DrawImage(Image.FromStream(new MemoryStream(frm.FrameBytes)), 0, 0, 1080, 1080);
 
+            ImageCodecInfo jpgEncoder = GetEncoder(ImageFormat.Jpeg);
+            System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
+            EncoderParameters myEncoderParameters = new EncoderParameters(1);
+            EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, 100L);
+            myEncoderParameters.Param[0] = myEncoderParameter;
+
             var outStream = new MemoryStream();
-            img.Save(outStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+            img.Save(outStream, jpgEncoder, myEncoderParameters);
 
             var newPhoto = new Photo()
             {
@@ -76,7 +83,7 @@ namespace Activote.Controllers
                 MakePublic = makePublic
             };
             newPhoto.ActionID = db.Actions.FirstOrDefault(a => a.ActionTag == actionTag).ActionID;
-            if(Person.LoggedInPersonID > -1)
+            if (Person.LoggedInPersonID > -1)
             {
                 newPhoto.PersonID = Person.LoggedInPersonID;
             }
@@ -84,6 +91,19 @@ namespace Activote.Controllers
             db.SaveChanges();
 
             return newPhoto.PhotoGUID.ToString();
+        }
+
+        private ImageCodecInfo GetEncoder(ImageFormat format)
+        {
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();
+            foreach (ImageCodecInfo codec in codecs)
+            {
+                if (codec.FormatID == format.Guid)
+                {
+                    return codec;
+                }
+            }
+            return null;
         }
 
         public ActionResult _DownloadImageView()
