@@ -1,15 +1,54 @@
+.author-info{
+    text-align: left;
+    margin-bottom: .25em;
+    span{
+        @include body-font(normal);
+        font-style: italic;
+        font-size: .6em;
+        color: $white-grey;
+    }
+}
+.scale-buttons{
+//    border-top: 1px solid $black;
+//    margin-bottom: .5em;
+    .scale-btn{
+        width: 50%;
+        padding: .5em;
+        margin-bottom: .5em;
+        float: left;
+        clear: both;
+//        padding: .75em;
+        
+        background-color: $white-grey;
+        color: $black;
+        transition: all .2s ease-out;
+        
+        &:hover{
+            background-color: $blue;
+            color: white;
+        }
+    }
+}
+#imgEditor{
+    cursor: move;
+    span{
+        transition: all .25s ease-out;
+    }
+}
+
 .frames{
     width: 100vw;
     overflow-x: auto;
-    padding-left: 20px;
+    padding: 0 20px;
     white-space: nowrap;
+    margin-top: .9em;
     
     .frame{
         width: 5em;
         height: 5em;
         display: inline-block;
-        margin-left: 6px;
-        background-color: $grey;
+        margin-left: .5em;
+        background-color: $white-grey;
         @include rounded(.75em);
         overflow: hidden;
         -webkit-overflow-scrolling: touch;

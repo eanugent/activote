@@ -1,7 +1,7 @@
 #main-nav{
     padding: 0;
     position: absolute;
-    
+    max-width: calc(100% - 5em);
     .navbar-header{
         
         .navbar-brand{
@@ -51,6 +51,7 @@
         width: 100vw;
         position: absolute;
         z-index: -1;
+        top: 0;
         .menu-wrapper{
             height: 100vh;
             background-color: black;

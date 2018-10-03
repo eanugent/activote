@@ -1,22 +1,32 @@
 @model IEnumerable<Activote.Models.Frame>
-
+    <button class="overlay-close" type="button">
+        <span class="close-icon"></span>
+    </button>
+    
     <div class="container-fluid">
+       <div class="row justify-content-center">
+          <div class="col-10 offset-md-1 col-md-5">
+               <div class="author-info">
+                   <span id="spFrameAuthor"></span>
+                   <span id="spFrameAuthorURL"></span>
+               </div>
+           </div>
+       </div>
         <div class="row justify-content-center">
-            <div class="screen-content col-10 col-md-4">
+            <div class="screen-content col-10 offset-md-1 col-md-4">
                 <input type="hidden" id="defaultFrameID" value="@ViewBag.DefaultFrameID" />
-                <div>
-                    <span id="spFrameAuthor"></span>
-                    <span id="spFrameAuthorURL"></span>
-                </div>
                 <div id="imgEditor" style="width: 100%;">
 
                 </div>
                 <canvas id="downloadCanvas" style="display:none;"></canvas>
-
-                <button type="button" class="btn btn-default" onclick="action.adjustScale(false);">-</button>
-                <button type="button" class="btn btn-default" onclick="action.adjustScale(true);">+</button>
-
+                
                 <input value="1" style="display:none;" id="imgScale" />
+            </div>
+            <div class="screen-content d-none d-md-block col-md-1">
+                <div class="scale-buttons">
+                    <button type="button" class="btn btn-default scale-btn left" onclick="action.adjustScale(false);">-</button>
+                    <button type="button" class="btn btn-default scale-btn right" onclick="action.adjustScale(true);">+</button>
+                </div>
             </div>
 
             <div class="frames">

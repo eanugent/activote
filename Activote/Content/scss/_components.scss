@@ -26,3 +26,39 @@
         
     }
 }
+
+
+#dvLoading{
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    background-color: rgba(23, 25, 24, 0);
+    transition: all .15s ease-out;
+    overflow: hidden;
+    
+    .load-wrapper{
+        width: 80px;
+        height: 80px;
+        padding: 20px;
+        @include rounded(100px);
+        background-color: $black;
+        background-repeat: no-repeat;
+        background-image: url(img/loading.png);
+        background-position: center center;
+        background-size: 70%;
+        transition: all .35s ease-in-out;
+        margin-top: 80vh;
+    }
+    
+    display: none;
+    
+    &.loading{
+        display: flex;
+        background-color: rgba(23, 25, 24, 0.8);
+        .load-wrapper{
+            margin-top: 0;
+        }
+    }
+}
