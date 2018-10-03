@@ -43,8 +43,7 @@
             $("#aCheckRegLink").attr("href", $("#slState option:selected").data("url"));
             $("#registeredStateImg").attr("src", activoteGlobal.sitePath + "Content/img/states/" + $("#slState option:selected").data("image") + ".svg");
 
-            $("#dvCheckRegOverlay").addClass("active");
-            $("#dvCheckRegOverlay").show();
+            $("#dvCheckRegOverlay").addClass("active");            
         }
     };
     
