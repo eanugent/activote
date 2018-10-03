@@ -12,6 +12,10 @@ $(function () {
         }
     });
 
+    $(window).resize(function () {
+        action.resizeImageEditor();
+    });
+
     action.showLoading = function () {
         $("#dvLoading").addClass("loading");
     }
@@ -65,6 +69,10 @@ $(function () {
                 success: function (data) {
                     action.showNextStep(data);
                     action.initImgEditor();                    
+                    if ("ontouchstart" in document.documentElement) {
+                          $("desktop-only").removeClass("d-md-block");
+                          $("desktop-only").removeClass("d-lg-block");
+                    }
                     action.hideLoading();
                 }
             });
@@ -135,6 +143,29 @@ $(function () {
         $("#spFrameAuthor").html(frameAuthor);
         $("#aFrameAuthorURL").attr("href", frameAuthorURL);
         action.imgEditor.setImage({ url: newURL, closeButtonRequire: false, clickToSelect: false }, 1, false);
+    };
+    
+    action.resizeImageEditor = function () {
+        var $el = $("#imgEditor");
+        if ($el.length > 0) {
+            var elHeight = $el.outerHeight();
+            var elWidth = $el.outerWidth();
+            var elRatio = elHeight / elWidth;
+
+            var $wrapper = $("#editor-wrapper");
+
+            scale = $wrapper.width() / elWidth;
+            wrapHeight = $wrapper.width() * elRatio;
+
+            $wrapper.css({
+                height: wrapHeight + "px"
+            });
+
+            $el.css({
+                "transform": "translate(0, 0) scale(" + scale + ")",
+                "transform-origin": "0px 0px 0px"
+            });
+        }
     };
 
     action.chooseFrame = function () {
