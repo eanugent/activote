@@ -19,7 +19,7 @@
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#main-nav-menu" aria-controls="main-nav-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                @Html.ActionLink("Activote", "Signup", "Person", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Activote", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div id="main-nav-menu" class="navbar-collapse collapse">
                <div class="menu-wrapper">
@@ -34,8 +34,7 @@
                     else
                     {
                         <li><a href="~/Person/Login">Login</a></li>
-                    }
-                    <li><a href="~/Home/StateTest">Check Registration</a></li>
+                    }                    
                     <li></li>
                 </ul>
                 </div>

@@ -10,7 +10,7 @@ using Activote.Models;
 
 namespace Activote.Controllers
 {
-    [AuthorizeAttribute()]
+    [AllowAnonymous()]
     public class ActionController : Controller
     {
         private activoteEntities db = new activoteEntities();
@@ -44,7 +44,11 @@ namespace Activote.Controllers
 
         public ActionResult _ChooseFrame(string actionTag)
         {
-            ViewBag.DefaultFrameID = db.Actions.FirstOrDefault(a => a.ActionTag == actionTag).DefaultFrameGUID.ToString();
+            var frmID = db.Actions.FirstOrDefault(a => a.ActionTag == actionTag).DefaultFrameGUID;
+            Frame defFrame = db.Frames.Find(frmID);
+            ViewBag.DefaultFrameID = frmID.ToString();
+            ViewBag.FrameAuthor = defFrame.FrameAuthor;
+            ViewBag.FrameAuthorURL = defFrame.FrameAuthorURL;
             return PartialView(db.Frames.Where(f => f.Action.ActionTag == actionTag).ToList());
         }
 

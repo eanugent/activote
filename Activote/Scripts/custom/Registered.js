@@ -46,5 +46,17 @@
             $("#dvCheckRegOverlay").addClass("active");            
         }
     };
-    
+
+    action.registered.launchStateSite = function () {
+        var url = $("#slState option:selected").data("url");
+        if (url != null) {            
+            action.registered.hideCheckReg();
+            window.open(url);
+        }
+    }
+
+    action.registered.hideCheckReg = function () {
+        $("#dvCheckRegOverlay").removeClass("activte");
+        action.showPrevStep();
+    }
 });
