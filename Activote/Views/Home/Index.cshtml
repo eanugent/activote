@@ -1,79 +1,74 @@
-﻿@{
-    /**/
-
-    ViewBag.Title = "Index";
-}
-@if (ViewBag.InitView != null)
+﻿@if (ViewBag.InitView != null)
 {
     <input type="hidden" id="InitView" value="@ViewBag.InitView" />
 }
-    <!--
-        <div id="dvSlideShow">
-            <img style="width:25%" />
-            <img style="width:25%" />
-            <img style="width:25%" />
-            <img style="width:25%" />
-        </div>
-    -->
-
-    <div data-step="1" class="screen row justify-content-center align-items-center">
-
+<!--
+    <div id="dvSlideShow">
+        <img style="width:25%" />
+        <img style="width:25%" />
+        <img style="width:25%" />
+        <img style="width:25%" />
     </div>
+-->
 
-    <div data-step="2" class="screen row justify-content-center align-items-center">
+<div data-step="1" class="screen row justify-content-center align-items-center">
 
+</div>
+
+<div data-step="2" class="screen row justify-content-center align-items-center">
+
+</div>
+
+<div data-step="3" class="screen row justify-content-center align-items-center">
+
+</div>
+
+<div data-step="4" class="screen row justify-content-center align-items-center">
+
+</div>
+
+<div data-step="5" class="screen row justify-content-center align-items-center">
+
+</div>
+
+<div data-step="6" class="screen row justify-content-center align-items-center">
+
+</div>
+<div data-step="7" class="screen row justify-content-center align-items-center">
+
+</div>
+
+<div data-step="8" class="screen row justify-content-center align-items-center">
+
+</div>
+
+<div id="dvLoading" class="">
+
+</div>
+
+<div id="dvCheckRegOverlay" class="overlay" style="display:none;">
+    <img id="registeredStateImg" />
+    <div class="message">
+Launch state website to check registration
     </div>
-
-    <div data-step="3" class="screen row justify-content-center align-items-center">
-
-    </div>
-
-    <div data-step="4" class="screen row justify-content-center align-items-center">
-
-    </div>
-
-    <div data-step="5" class="screen row justify-content-center align-items-center">
-
-    </div>
-
-    <div data-step="6" class="screen row justify-content-center align-items-center">
-    
-
-    <div data-step="7" class="screen row justify-content-center align-items-center">
-
-    </div>
-
-    <div data-step="8" class="screen row justify-content-center align-items-center">
-
-    </div>
+    <a href="#" id="aCheckRegLink" class="btn btn-default">Launch</a>
+</div>
 
 
-    <div id="dvOverlay" class="screen row justify-content-center align-items-center">
+@section scripts{
+    <script src="~/Scripts/hammer.min.js"></script>
+    <script src="~/Scripts/ImageEditor.js"></script>
+    <script src="~/Scripts/custom/Action.js"></script>
+    <script src="~/Scripts/custom/Registered.js"></script>
 
-    </div>
-
-
-    @section scripts{
-        <script src="~/Scripts/hammer.min.js"></script>
-        <script src="~/Scripts/ImageEditor.js"></script>
-        <script src="~/Scripts/custom/Action.js"></script>
-        <script src="~/Scripts/custom/Registered.js"></script>
-
-    }
-
-    @section styles{
-        <style>
-            .screen-div {
-                border: solid;
-                padding: 10px;
-            }
-        </style>
-
-    }
 }
-else
-{
-    <div>
-        Invalid Link
-    </div>
+
+@section styles{
+    <style>
+        .screen-div {
+            border: solid;
+            padding: 10px;
+        }
+    </style>
+
 }

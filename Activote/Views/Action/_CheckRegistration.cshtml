@@ -11,7 +11,7 @@
     <option value="">SELECT YOUR STATE</option>
     @foreach (State s in Model)
     {
-        <option value="@s.StateAbbrev" data-url="@s.RegistrationURL">@s.StateName</option>
+        <option value="@s.StateAbbrev" data-image="@s.StateName.Replace(" ", "_")" data-url="@s.RegistrationURL">@s.StateName</option>
     }
 </select>
 <span>

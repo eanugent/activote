@@ -39,7 +39,13 @@
 
     action.registered.stateSelected = function () {
         if ($("#slState").val() != "") {
-            window.open($("#slState option:selected").data("url"));
+            //window.open($("#slState option:selected").data("url"));
+            $("#aCheckRegLink").attr("href", $("#slState option:selected").data("url"));
+            $("#registeredStateImg").attr("src", activoteGlobal.sitePath + "Content/img/states/" + $("#slState option:selected").data("image") + ".svg");
+
+            $("#dvCheckRegOverlay").addClass("active");
+            $("#dvCheckRegOverlay").show();
         }
     }
+    
 });

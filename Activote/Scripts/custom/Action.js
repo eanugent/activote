@@ -12,6 +12,14 @@ $(function () {
         }
     });
 
+    action.showLoading = function () {
+        $("#dvLoading").addClass("loading");
+    }
+
+    action.hideLoading = function () {
+        $("#dvLoading").removeClass("loading");
+    }
+
     action.showNextStep = function (html, isOverlay) {
         if (isOverlay == null) isOverlay = false;
 
@@ -48,7 +56,8 @@ $(function () {
         var file = $("#uploadPic")[0].files[0];
 
         reader.onloadend = function () {
-            action.usrImage = reader.result;
+            action.showLoading();
+            action.usrImage = reader.result;            
             $.ajax({
                 url: activoteGlobal.sitePath + "Action/_ChooseFrame",
                 data: { actionTag: action.currentActionTag },
@@ -56,6 +65,7 @@ $(function () {
                 success: function (data) {
                     action.showNextStep(data);
                     action.initImgEditor();                    
+                    action.hideLoading();
                 }
             });
             //$.ajax({
@@ -208,41 +218,18 @@ $(function () {
 
     action.chooseMakePicPublic = function (choice) {
         action.makePicPublic = choice;
-
+        action.showLoading();
         $.ajax({
             url: activoteGlobal.sitePath + "Action/BuildImage",
             data: {
                 pic: action.usrImage, actionTag: action.currentActionTag, frameID: action.selectedFrameID,
                 x: action.usrImageX, y: action.usrImageY, scale: action.usrImageScale, width: action.usrImageWidth, height: action.usrImageHeight,
-                makePublic: choice
+                makePublic: choice, __RequestVerificationToken: $("[name=__RequestVerificationToken]").val() 
             },
             method: "POST",
             success: function (data) {
-                action.imgDownloadString = activoteGlobal.sitePath + "Home/Photo/" + data;
+                action.imgDownloadString = activoteGlobal.sitePath + "Home/Photo/" + data;                
                 action.loadDownloadImage();
-            }
-        });
-
-        //if (activoteGlobal.personID > 0) {
-        //    action.loadDownloadImage();
-        //}
-        //else {
-        //    action.loadSignup();
-        //}
-    };
-
-    action.loadSignup = function () {
-        $.ajax({
-            url: activoteGlobal.sitePath + "Action/_Signup",
-            method: "POST",
-            data: { actionTag: action.currentActionTag, makePublic: action.makePicPublic, state: action.state },
-            success: function (data) {
-                action.showNextStep(data);
-                $("#formSignup").submit(function () {
-                    $.ajax({
-                        url: activoteGlobal.sitePath + ""
-                    });
-                });
             }
         });
     };
@@ -253,6 +240,7 @@ $(function () {
             success: function (data) {
                 action.showNextStep(data);
                 $("#finalImage").attr("src", action.imgDownloadString);
+                action.hideLoading();
             }
         });
     }
@@ -262,10 +250,12 @@ $(function () {
     };
 
     if ($("#InitView").length > 0) {
+        action.showLoading();
         $.ajax({
             url: activoteGlobal.sitePath + "Action/" + $("#InitView").val(),
             success: function (data) {
                 action.showNextStep(data);
+                action.hideLoading();
             }
         });
     }

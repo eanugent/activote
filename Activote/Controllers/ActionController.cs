@@ -52,7 +52,7 @@ namespace Activote.Controllers
             return PartialView();
         }
 
-        //[ValidateAntiForgeryToken()]
+        [ValidateAntiForgeryToken()]
         public string BuildImage(string pic, string actionTag, Guid frameID, float x, float y, float scale, float width, float height, bool makePublic)
         {
             pic = pic.Replace("data:image/jpeg;base64,", "").Replace("data:image/png;base64,", "");
