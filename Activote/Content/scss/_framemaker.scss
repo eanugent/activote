@@ -1,11 +1,15 @@
 .author-info{
     text-align: left;
     margin-bottom: .25em;
-    span{
+    span, a{
         @include body-font(normal);
         font-style: italic;
         font-size: .6em;
         color: $white-grey;
+    }
+    a{
+        color: $blue;
+        text-decoration: underline;
     }
 }
 .scale-buttons{

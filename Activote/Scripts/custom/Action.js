@@ -133,7 +133,7 @@ $(function () {
     action.changeFrame = function (newURL, frameID, frameAuthor, frameAuthorURL) {
         action.selectedFrameID = frameID;
         $("#spFrameAuthor").html(frameAuthor);
-        $("#spFrameAuthorURL").html(frameAuthorURL);
+        $("#spFrameAuthorURL").attr("src",frameAuthorURL);
         action.imgEditor.setImage({ url: newURL, closeButtonRequire: false, clickToSelect: false }, 1, false);
     };
 
