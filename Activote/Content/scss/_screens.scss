@@ -2,6 +2,7 @@
     height: 100vh;
     background-color: $black;
     overflow: hidden;
+    position: relative;
     
     .screen{
         height: 100vh;
@@ -25,8 +26,11 @@
             transition: top .5s ease-in-out;
             opacity: 1;
             z-index: 2;
-            top: 100vh;
+            top: 101vh;
+            height: 0;
+            overflow: hidden;
             &.active{
+                height: 100vh;
                 -webkit-transition-delay: 0s;
                 transition-delay: 0s;
                 transition: top .5s ease-in-out;
@@ -67,6 +71,13 @@
             }
         }
         
+        .state-icon{
+            margin-bottom: 1em;
+            img{
+                max-height: 24vh;
+            }
+        }
+        
         .photo-upload{
             width: 0.1px;
             height: 0.1px;
@@ -90,6 +101,30 @@
             }
         }
         
+        .overlay-close{
+            
+            @include rounded(0);
+            padding: .75em;
+            transition: all .2s ease-out;
+            border: none;
+            position: absolute;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+            background-color: transparent;
+            &:hover, &:focus{
+                background-color: $red;
+            }
+            .close-icon{
+                display: block;
+                width: .75em;
+                height: .75em;
+                background-repeat: no-repeat;
+                background-image: url(img/icon-x.svg);
+                background-position: top center;
+                background-size: contain;
+            }
+        }
         
         font-size: 1.25rem;
         @media (max-width: 340px) { 

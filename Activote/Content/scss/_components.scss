@@ -10,9 +10,19 @@
     text-align: center;
     padding: .25em;
     text-transform: uppercase;
-    transition: filter .5s ease-out;
-    filter: saturate(1);
+    transition: all .4s ease-out;
+    //filter: saturate(1);
     &:hover{
-        filter: saturate(3);
+        color: white;
+        &.blue{
+            background-color: $bright-blue;
+        }
+        &.red{
+            background-color: $bright-red;
+        }
+        &.black{
+            background-color: $red;
+        }
+        
     }
 }
