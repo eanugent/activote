@@ -9,12 +9,12 @@
     margin-bottom: .5em;
     
     a {
-        span{
-            color: $blue !important;
-            text-decoration: underline !important;
-            cursor: pointer;
-        }
-        &:hover span{
+        
+        color: $blue !important;
+        text-decoration: underline !important;
+        cursor: pointer;
+        
+        &:hover{
            text-decoration: none!important; 
         }
     }
@@ -64,6 +64,8 @@
         @include rounded(.75em);
         overflow: hidden;
         -webkit-overflow-scrolling: touch;
+        background-image: url(img/frame-bg.jpg);
+        background-size: contain;
         
         img{
             width: 100%;

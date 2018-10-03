@@ -329,12 +329,12 @@ input[type="submit"] {
   font-size: .5em;
   color: #F4F4F4;
   margin-bottom: .5em; }
-  .author-info a span {
+  .author-info a {
     color: #0799F5 !important;
     text-decoration: underline !important;
     cursor: pointer; }
-  .author-info a:hover span {
-    text-decoration: none !important; }
+    .author-info a:hover {
+      text-decoration: none !important; }
 
 .scale-buttons .scale-btn {
   width: 50%;
@@ -371,7 +371,9 @@ input[type="submit"] {
     -webkit-border-radius: 0.75em 0.75em 0.75em 0.75em;
     border-radius: 0.75em 0.75em 0.75em 0.75em;
     overflow: hidden;
-    -webkit-overflow-scrolling: touch; }
+    -webkit-overflow-scrolling: touch;
+    background-image: url(img/frame-bg.jpg);
+    background-size: contain; }
     .frames .frame img {
       width: 100%;
       height: auto; }
