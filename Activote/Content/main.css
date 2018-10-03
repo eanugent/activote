@@ -322,16 +322,19 @@ input[type="submit"] {
 
 .author-info {
   text-align: left;
-  margin-bottom: .25em; }
-  .author-info span, .author-info a {
-    font-family: 'TTRoundsNeue','Arial Rounded','Helvetica Neue Light', 'Helvetica Neue',Arial,sans-serif;
-    font-weight: normal;
-    font-style: italic;
-    font-size: .6em;
-    color: #F4F4F4; }
-  .author-info a {
-    color: #0799F5;
-    text-decoration: underline; }
+  margin-bottom: .25em;
+  font-family: 'TTRoundsNeue','Arial Rounded','Helvetica Neue Light', 'Helvetica Neue',Arial,sans-serif;
+  font-weight: normal;
+  font-style: italic;
+  font-size: .5em;
+  color: #F4F4F4;
+  margin-bottom: .5em; }
+  .author-info a span {
+    color: #0799F5 !important;
+    text-decoration: underline !important;
+    cursor: pointer; }
+  .author-info a:hover span {
+    text-decoration: none !important; }
 
 .scale-buttons .scale-btn {
   width: 50%;
@@ -347,9 +350,10 @@ input[type="submit"] {
     color: white; }
 
 #imgEditor {
-  cursor: move; }
+  cursor: move;
+  background-color: black; }
   #imgEditor span {
-    transition: all .25s ease-out; }
+    transition: all .15s ease-out; }
 
 .frames {
   width: 100vw;
