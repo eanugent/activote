@@ -130,8 +130,10 @@ $(function () {
         action.imgEditor.scaleImage(val, val);
     };
 
-    action.changeFrame = function (newURL, frameID) {
+    action.changeFrame = function (newURL, frameID, frameAuthor, frameAuthorURL) {
         action.selectedFrameID = frameID;
+        $("#spFrameAuthor").html(frameAuthor);
+        $("#spFrameAuthorURL").html(frameAuthorURL);
         action.imgEditor.setImage({ url: newURL, closeButtonRequire: false, clickToSelect: false }, 1, false);
     };
 
