@@ -56,7 +56,7 @@
     }
 
     action.registered.hideCheckReg = function () {
-        $("#dvCheckRegOverlay").removeClass("activte");
+        action.hideOverlay();
         action.showPrevStep();
     }
 });

@@ -40,6 +40,10 @@ $(function () {
         }
     };
 
+    action.hideOverlay = function () {
+        $(".overlay").removeClass("active");
+    }
+
     action.showPrevStep = function () {
         action.currentStep--;
         $(".screen").removeClass("active");
