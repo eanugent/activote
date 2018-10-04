@@ -201,6 +201,39 @@
 		"oAP": "\/fonts\/37A483_2_0.woff2",
 		"oF": 0
 		},
+	"\/frames\/frame-strokes.png": {
+		"ft": 32768,
+		"iS": 119729,
+		"oA": 0,
+		"oAP": "\/frames\/frame-strokes.png",
+		"oF": 0,
+		"oIPL": 1,
+		"opt": 1,
+		"oT": 1,
+		"q": 85
+		},
+	"\/frames\/kibbles.png": {
+		"ft": 32768,
+		"iS": 31805,
+		"oA": 0,
+		"oAP": "\/frames\/kibbles.png",
+		"oF": 0,
+		"oIPL": 1,
+		"opt": 1,
+		"oT": 1,
+		"q": 80
+		},
+	"\/frames\/memphis-1.png": {
+		"ft": 32768,
+		"iS": 90310,
+		"oA": 0,
+		"oAP": "\/frames\/memphis-1.png",
+		"oF": 0,
+		"oIPL": 1,
+		"opt": 1,
+		"oT": 1,
+		"q": 84
+		},
 	"\/frames\/registered.png": {
 		"ft": 32768,
 		"iS": 79123,
