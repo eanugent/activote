@@ -28,7 +28,7 @@
 <div data-step="8" class="screen row justify-content-center align-items-center"></div>
 
 <div id="dvCheckRegOverlay" class="screen overlay row justify-content-center align-items-center">
-    <button class="overlay-close" onclick="action.registered.hideCheckReg();" type="button">
+    <button class="overlay-close" onclick="action.hideOverlay();" type="button">
         <span class="close-icon"></span>
     </button>
     <div class="screen-content col-12 col-md-10 col-lg-5">
@@ -51,6 +51,11 @@
     <div class="load-wrapper">
 <!--        <img src="../../Content/img/loading.png" style="width: 100%; height: auto;">-->
     </div>
+</div>
+
+<div id="dvLoadingPercent" style="display:none;">
+    <span id="spLoading">Loading ... <span id="spLoadingPercent">0%</span></span>
+    <span id="spAlmostLoaded" style="display:none;">Almost done ...</span>
 </div>
 
 @section scripts{

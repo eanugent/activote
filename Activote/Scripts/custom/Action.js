@@ -264,8 +264,33 @@ $(function () {
     action.chooseMakePicPublic = function (choice) {
         action.makePicPublic = choice;
         action.showLoading();
-        
+        $("#dvLoadingPercent").show();
         $.ajax({
+            xhr: function () {
+                var xhr = new window.XMLHttpRequest();
+                //Upload progress
+                xhr.upload.addEventListener("progress", function (evt) {
+                    if (evt.lengthComputable) {
+                        var percentComplete = (evt.loaded / evt.total) * 100;                        
+                        if (percentComplete < 99) {
+                            $("#spLoadingPercent").html(Math.trunc(percentComplete).toString() + "%");
+                        }
+                        else {
+                            $("#spLoadingPercent").hide();
+                            $("#spAlmostLoaded").show();
+                        }
+                    }
+                }, false);
+                //Download progress
+                //xhr.addEventListener("progress", function (evt) {
+                //    if (evt.lengthComputable) {
+                //        var percentComplete = evt.loaded / evt.total;
+                //        //Do something with download progress
+                //        console.log(percentComplete);
+                //    }
+                //}, false);
+                return xhr;
+            },
             url: activoteGlobal.sitePath + "Action/BuildImage",
             data: {
                 pic: action.usrImage, actionTag: action.currentActionTag, frameID: action.selectedFrameID,
@@ -276,6 +301,7 @@ $(function () {
             success: function (data) {
                 action.imgDownloadString = activoteGlobal.sitePath + "Home/Photo/" + data;
                 action.loadDownloadImage();
+                $("#dvLoadingPercent").hide();
             }
         });
     };

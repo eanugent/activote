@@ -20,6 +20,8 @@ namespace Activote.Models
         public System.DateTime DateCreated { get; set; }
         public bool MakePublic { get; set; }
         public byte[] PhotoBytes { get; set; }
+        public Nullable<int> PhotoByteSize { get; set; }
+        public Nullable<System.Guid> FrameGUID { get; set; }
     
         public virtual Action Action { get; set; }
         public virtual Person Person { get; set; }
