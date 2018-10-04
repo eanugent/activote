@@ -60,12 +60,60 @@ $(function () {
     };
 
     action.imageUploaded = function () {
+
+        /************************************************************************/
+
+
+
+        /************************************************************************/
+
         var reader = new FileReader();
         var file = $("#uploadPic")[0].files[0];
+        EXIF.getData(file, function () {
+            var orientation = this.exifdata.Orientation;
+            if (orientation !== undefined) { //Need to rotate image (mobile devices)
+                var can = document.createElement("canvas");
+                var ctx = can.getContext('2d');
+                var thisImage = new Image;
+                thisImage.onload = function () {
+                    can.width = thisImage.width;
+                    can.height = thisImage.height;
+                    ctx.save();
+                    var width = can.width; var styleWidth = can.style.width;
+                    var height = can.height; var styleHeight = can.style.height;
+                    if (orientation) {
+                        if (orientation > 4) {
+                            can.width = height; can.style.width = styleHeight;
+                            can.height = width; can.style.height = styleWidth;
+                        }
+                        switch (orientation) {
+                            case 2: ctx.translate(width, 0); ctx.scale(-1, 1); break;
+                            case 3: ctx.translate(width, height); ctx.rotate(Math.PI); break;
+                            case 4: ctx.translate(0, height); ctx.scale(1, -1); break;
+                            case 5: ctx.rotate(0.5 * Math.PI); ctx.scale(1, -1); break;
+                            case 6: ctx.rotate(0.5 * Math.PI); ctx.translate(0, -height); break;
+                            case 7: ctx.rotate(0.5 * Math.PI); ctx.translate(width, -height); ctx.scale(-1, 1); break;
+                            case 8: ctx.rotate(-0.5 * Math.PI); ctx.translate(-width, 0); break;
+                        }
+                    }
 
-        reader.onloadend = function () {
-            action.showLoading();
-            action.usrImage = reader.result;
+                    ctx.drawImage(thisImage, 0, 0);
+                    ctx.restore();
+                    action.usrImage = can.toDataURL();
+                }
+
+                thisImage.src = URL.createObjectURL(file);
+            }
+            else {
+                reader.onloadend = function () {
+                    action.showLoading();
+                    action.usrImage = reader.result;                    
+                }
+                if (file) {
+                    reader.readAsDataURL(file);
+                }
+            }
+
             $("#uploadPic").val('');
             $.ajax({
                 url: activoteGlobal.sitePath + "Action/_ChooseFrame",
@@ -73,18 +121,15 @@ $(function () {
                 method: "POST",
                 success: function (data) {
                     action.showNextStep(data);
-                    action.initImgEditor();                    
+                    action.initImgEditor();
                     if ("ontouchstart" in document.documentElement) {
-                          $("desktop-only").removeClass("d-md-block");
-                          $("desktop-only").removeClass("d-lg-block");
+                        $("desktop-only").removeClass("d-md-block");
+                        $("desktop-only").removeClass("d-lg-block");
                     }
                     action.hideLoading();
                 }
             });
-        }
-        if (file) {
-            reader.readAsDataURL(file);
-        }
+        });
     }
 
     action.initImgEditor = function () {
@@ -130,7 +175,7 @@ $(function () {
         $("#aFrameAuthorURL").attr("href", frameAuthorURL);
         action.imgEditor.setImage({ url: newURL, closeButtonRequire: false, clickToSelect: false }, 1, false);
     };
-    
+
     action.resizeImageEditor = function () {
         var $el = $("#imgEditor");
         if ($el.length > 0) {
@@ -155,25 +200,6 @@ $(function () {
     };
 
     action.chooseFrame = function () {
-        //var canvas = action.imgEditor.mergeImage();
-        //action.imgString = canvas.toDataURL();
-
-        //var image = new Image();
-        //image.onload = function () {
-        //    var dlCanvas = document.getElementById("downloadCanvas");
-        //    image.width = 1080;
-        //    image.height = 1080;
-
-        //    var ctx = dlCanvas.getContext("2d");
-        //    ctx.clearRect(0, 0, dlCanvas.width, dlCanvas.height);
-        //    dlCanvas.width = image.width;
-        //    dlCanvas.height = image.height;
-        //    ctx.drawImage(image, 0, 0, image.width, image.height);
-        //    action.imgDownloadString = dlCanvas.toDataURL("image/jpeg");
-        //};
-
-        //image.src = action.imgString;
-
         var picWidth = 1080, picHeight = 1080;
 
         var frameImg = new Image();
@@ -181,7 +207,7 @@ $(function () {
         frameImg.height = picHeight;
         frameImg.src = action.imgEditor.images[1].url;
 
-        var usrImg = new Image();        
+        var usrImg = new Image();
         usrImg.src = action.usrImage;
 
         var dlCanvas = $("#downloadCanvas")[0];
@@ -190,18 +216,18 @@ $(function () {
 
         var ctx = dlCanvas.getContext("2d");
         ctx.clearRect(0, 0, picWidth, picHeight);
-        var w, h, sc = $("#imgScale").val();
+        var w, h, sc = action.imgEditor.images[0].transform.scale;
 
         var xMove = ((action.imgEditor.images[0].centerPoint.x - action.usrImageOrigPoint.x) / action.imgEditor.options.width);
         var yMove = ((action.imgEditor.images[0].centerPoint.y - action.usrImageOrigPoint.y) / action.imgEditor.options.height);
-        
+
         if (usrImg.naturalWidth > usrImg.naturalHeight) {
             w = picWidth;
-            h = (usrImg.naturalHeight / usrImg.naturalWidth) * w;            
+            h = (usrImg.naturalHeight / usrImg.naturalWidth) * w;
         }
         else {
             h = picHeight;
-            w = (usrImg.naturalWidth / usrImg.naturalHeight) * h;        
+            w = (usrImg.naturalWidth / usrImg.naturalHeight) * h;
         }
 
         var centerX = (xMove * picWidth) + (picWidth / 2);
@@ -209,11 +235,11 @@ $(function () {
         var x = centerX - ((w * sc) / 2);
         var y = centerY - ((h * sc) / 2);
 
-        ctx.scale(sc, sc);
-        ctx.drawImage(usrImg, x, y, w, h);
+        //ctx.scale(sc, sc);
+        //ctx.drawImage(usrImg, x, y, w, h);
 
-        ctx.scale((1/sc), (1/sc));
-        ctx.drawImage(frameImg, 0, 0, frameImg.width, frameImg.height);
+        //ctx.scale((1 / sc), (1 / sc));
+        //ctx.drawImage(frameImg, 0, 0, frameImg.width, frameImg.height);
 
         //action.imgDownloadString = dlCanvas.toDataURL("image/jpeg");
         action.usrImageX = x;
@@ -238,16 +264,17 @@ $(function () {
     action.chooseMakePicPublic = function (choice) {
         action.makePicPublic = choice;
         action.showLoading();
+        
         $.ajax({
             url: activoteGlobal.sitePath + "Action/BuildImage",
             data: {
                 pic: action.usrImage, actionTag: action.currentActionTag, frameID: action.selectedFrameID,
                 x: action.usrImageX, y: action.usrImageY, scale: action.usrImageScale, width: action.usrImageWidth, height: action.usrImageHeight,
-                makePublic: choice, __RequestVerificationToken: $("[name=__RequestVerificationToken]").val() 
+                makePublic: choice, __RequestVerificationToken: $("[name=__RequestVerificationToken]").val()
             },
             method: "POST",
             success: function (data) {
-                action.imgDownloadString = activoteGlobal.sitePath + "Home/Photo/" + data;                
+                action.imgDownloadString = activoteGlobal.sitePath + "Home/Photo/" + data;
                 action.loadDownloadImage();
             }
         });
