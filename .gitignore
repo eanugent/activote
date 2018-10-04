@@ -1109,3 +1109,4 @@ Activote/obj/Release/Package/PackageTmp/Views/Action/_MakePicPublic.cshtml
 Activote/obj/Release/Package/PackageTmp/Views/Action/_UploadImageView.cshtml
 Activote/obj/Release/Package/PackageTmp/Views/Home/Index.cshtml
 *.cs
+*.cs

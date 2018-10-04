@@ -29,9 +29,12 @@ namespace Activote.Models
         public string FrameExtension { get; set; }
         public byte[] FrameBytes { get; set; }
         public System.DateTime DateAdded { get; set; }
+        public Nullable<int> AddedByPersonID { get; set; }
+        public Nullable<int> FrameByteSize { get; set; }
     
         public virtual Action Action { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Action> Actions { get; set; }
+        public virtual Person Person { get; set; }
     }
 }

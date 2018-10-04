@@ -12,23 +12,42 @@ namespace Activote.Controllers
     public class AdminController : Controller
     {
         private activoteEntities db = new activoteEntities();
-        // GET: Admin
-        public ActionResult UploadFrame()
+        [AllowAnonymous()]
+        public ActionResult UploadFrame(Guid id)
         {
-            return View(db.Actions.ToList());
+            if (db.People.Any(p => p.LoginGUID == id))
+            {
+                ViewBag.guid = id;
+                return View(db.Actions.ToList());
+            }
+            else
+            {
+                return Content("Invalid or expired link");
+            }
         }
 
         [HttpPost]
-        public ActionResult UploadFrame(Frame frame, HttpPostedFileBase file)
+        [AllowAnonymous()]
+        public ActionResult UploadFrame(Frame frame, HttpPostedFileBase file, Guid guid)
         {
-            frame.FrameExtension = Path.GetExtension(file.FileName);
-            using (BinaryReader br = new BinaryReader(file.InputStream))
+            var pers = db.People.FirstOrDefault(p => p.LoginGUID == guid);
+            if (pers != null)
             {
-                frame.FrameBytes = br.ReadBytes(file.ContentLength);
+                frame.Person = pers;
+                frame.FrameExtension = Path.GetExtension(file.FileName);
+                frame.FrameByteSize = file.ContentLength;
+                using (BinaryReader br = new BinaryReader(file.InputStream))
+                {
+                    frame.FrameBytes = br.ReadBytes(file.ContentLength);
+                }
+                db.Frames.Add(frame);
+                db.SaveChanges();
+                return View(db.Actions.ToList());
             }
-            db.Frames.Add(frame);
-            db.SaveChanges();
-            return View(db.Actions.ToList());
+            else
+            {
+                return Content("Invalid or expired link");
+            }
         }
     }
 }

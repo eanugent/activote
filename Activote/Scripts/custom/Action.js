@@ -65,7 +65,8 @@ $(function () {
 
         reader.onloadend = function () {
             action.showLoading();
-            action.usrImage = reader.result;            
+            action.usrImage = reader.result;
+            $("#uploadPic").val('');
             $.ajax({
                 url: activoteGlobal.sitePath + "Action/_ChooseFrame",
                 data: { actionTag: action.currentActionTag },
@@ -80,25 +81,6 @@ $(function () {
                     action.hideLoading();
                 }
             });
-            //$.ajax({
-            //    url: activoteGlobal.sitePath + "Action/UploadPic",
-            //    data: { pic: imgData, actionTag: action.currentActionTag, __RequestVerificationToken: $("[name=__RequestVerificationToken]").val() },
-            //    method: "POST",
-            //    success: function (imgID) {
-            //        $.ajax({
-            //            url: activoteGlobal.sitePath + "Action/_ChooseFrame",
-            //            data: { actionTag: action.currentActionTag },
-            //            method: "POST",
-            //            success: function (data) {
-            //                $("#" + targetDiv).html(data);
-            //                action.initImgEditor(activoteGlobal.sitePath + "Home/Photo/" + imgID);
-            //                action.activateDiv(targetDiv);
-            //            }
-            //        });
-            //    }
-            //});
-
-            
         }
         if (file) {
             reader.readAsDataURL(file);

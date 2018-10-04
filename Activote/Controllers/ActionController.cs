@@ -75,7 +75,7 @@ namespace Activote.Controllers
             ImageCodecInfo jpgEncoder = GetEncoder(ImageFormat.Jpeg);
             System.Drawing.Imaging.Encoder myEncoder = System.Drawing.Imaging.Encoder.Quality;
             EncoderParameters myEncoderParameters = new EncoderParameters(1);
-            EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, 100L);
+            EncoderParameter myEncoderParameter = new EncoderParameter(myEncoder, 50L);
             myEncoderParameters.Param[0] = myEncoderParameter;
 
             var outStream = new MemoryStream();

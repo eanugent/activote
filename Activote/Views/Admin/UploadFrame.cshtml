@@ -5,6 +5,9 @@
 }
 
 <form method="post" enctype="multipart/form-data" style="background-color:white;">
+    @Html.AntiForgeryToken()
+    
+    <input type="hidden" name="guid" value="@ViewBag.guid" />
     <div class="form-group">
         <label class="col-md-2">Action</label>
         <div class="col-md-10">
