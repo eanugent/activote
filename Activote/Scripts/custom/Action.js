@@ -276,7 +276,7 @@ $(function () {
                             $("#spLoadingPercent").html(Math.trunc(percentComplete).toString() + "%");
                         }
                         else {
-                            $("#spLoadingPercent").hide();
+                            $("#spLoading").hide();
                             $("#spAlmostLoaded").show();
                         }
                     }

@@ -48,14 +48,12 @@
 </div>
 
 <div id="dvLoading" class="row justify-content-center align-items-center">
-    <div class="load-wrapper">
-<!--        <img src="../../Content/img/loading.png" style="width: 100%; height: auto;">-->
+    <div class="load-wrapper"></div>
+    
+    <div id="dvLoadingPercent" style="display:none;">
+        <span id="spLoading">Loading: <span id="spLoadingPercent">0%</span></span>
+        <span id="spAlmostLoaded" style="display:none;">Almost done...</span>
     </div>
-</div>
-
-<div id="dvLoadingPercent" style="display:none;">
-    <span id="spLoading">Loading ... <span id="spLoadingPercent">0%</span></span>
-    <span id="spAlmostLoaded" style="display:none;">Almost done ...</span>
 </div>
 
 @section scripts{

@@ -201,6 +201,39 @@
 		"oAP": "\/fonts\/37A483_2_0.woff2",
 		"oF": 0
 		},
+	"\/frames\/america-brush.png": {
+		"ft": 32768,
+		"iS": 500145,
+		"oA": 0,
+		"oAP": "\/frames\/america-brush.png",
+		"oF": 0,
+		"oIPL": 1,
+		"opt": 1,
+		"oT": 1,
+		"q": 40
+		},
+	"\/frames\/boyfriend-meme.png": {
+		"ft": 32768,
+		"iS": 1647921,
+		"oA": 0,
+		"oAP": "\/frames\/boyfriend-meme.png",
+		"oF": 0,
+		"oIPL": 1,
+		"opt": 1,
+		"oT": 1,
+		"q": 67
+		},
+	"\/frames\/brush-strokes.png": {
+		"ft": 32768,
+		"iS": 137318,
+		"oA": 0,
+		"oAP": "\/frames\/brush-strokes.png",
+		"oF": 0,
+		"oIPL": 1,
+		"opt": 1,
+		"oT": 1,
+		"q": 78
+		},
 	"\/frames\/frame-strokes.png": {
 		"ft": 32768,
 		"iS": 119729,
@@ -234,6 +267,17 @@
 		"oT": 1,
 		"q": 84
 		},
+	"\/frames\/nike-kaepernick.png": {
+		"ft": 32768,
+		"iS": 29893,
+		"oA": 0,
+		"oAP": "\/frames\/nike-kaepernick.png",
+		"oF": 0,
+		"oIPL": 1,
+		"opt": 1,
+		"oT": 1,
+		"q": 80
+		},
 	"\/frames\/registered.png": {
 		"ft": 32768,
 		"iS": 79123,
@@ -255,6 +299,28 @@
 		"opt": 1,
 		"oT": 1,
 		"q": 100
+		},
+	"\/frames\/women-power-2.png": {
+		"ft": 32768,
+		"iS": 561934,
+		"oA": 0,
+		"oAP": "\/frames\/women-power-2.png",
+		"oF": 0,
+		"oIPL": 1,
+		"opt": 1,
+		"oT": 1,
+		"q": 65
+		},
+	"\/frames\/women-power.png": {
+		"ft": 32768,
+		"iS": 565815,
+		"oA": 0,
+		"oAP": "\/frames\/women-power.png",
+		"oF": 0,
+		"oIPL": 1,
+		"opt": 1,
+		"oT": 1,
+		"q": 60
 		},
 	"\/img\/activote-social-thumb.jpg": {
 		"ft": 16384,

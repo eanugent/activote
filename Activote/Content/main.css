@@ -85,7 +85,7 @@ input[type="submit"] {
   background-color: #171918;
   color: white;
   text-align: center;
-  padding: .25em;
+  padding: .25em !important;
   text-transform: uppercase;
   transition: all .4s ease-out; }
   .action-btn:hover {
@@ -106,6 +106,7 @@ input[type="submit"] {
   background-color: rgba(23, 25, 24, 0);
   transition: all .15s ease-out;
   overflow: hidden;
+  flex-direction: column;
   display: none; }
   #dvLoading .load-wrapper {
     width: 80px;
@@ -121,11 +122,35 @@ input[type="submit"] {
     background-size: 70%;
     transition: all .35s ease-in-out;
     margin-top: 80vh; }
+  #dvLoading #dvLoadingPercent {
+    width: 160px;
+    height: 60px;
+    -moz-border-radius: 42px 42px 42px 42px;
+    -webkit-border-radius: 42px 42px 42px 42px;
+    border-radius: 42px 42px 42px 42px;
+    margin-top: 80vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: #171918;
+    transition: all .75s ease-in-out;
+    padding: 18px 0;
+    text-align: center;
+    box-sizing: border-box; }
+    #dvLoading #dvLoadingPercent, #dvLoading #dvLoadingPercent span {
+      font-family: 'TTRoundsNeue','Arial Rounded','Helvetica Neue Light', 'Helvetica Neue',Arial,sans-serif;
+      font-weight: bold;
+      font-size: 16px;
+      color: white; }
+    #dvLoading #dvLoadingPercent #spLoadingPercent {
+      color: #0799F5 !important; }
   #dvLoading.loading {
     display: flex;
     background-color: rgba(23, 25, 24, 0.8); }
     #dvLoading.loading .load-wrapper {
       margin-top: 0; }
+    #dvLoading.loading #dvLoadingPercent {
+      margin-top: 4em; }
 
 #main-nav {
   padding: 0;
@@ -376,6 +401,10 @@ input[type="submit"] {
     overflow: hidden;
     background-image: url(img/frame-bg.jpg);
     background-size: contain; }
+    @media (min-width: 1200px) {
+      .frames .frame {
+        width: 3.75em;
+        height: 3.75em; } }
     .frames .frame img {
       width: 100%;
       height: auto; }

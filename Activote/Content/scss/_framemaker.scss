@@ -68,6 +68,10 @@
         overflow: hidden;
         background-image: url(img/frame-bg.jpg);
         background-size: contain;
+        @media (min-width: 1200px) { 
+            width: 3.75em;
+            height: 3.75em;
+        }
         
         img{
             width: 100%;
