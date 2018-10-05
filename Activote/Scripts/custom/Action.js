@@ -61,10 +61,8 @@ $(function () {
 
     action.imageUploaded = function () {
 
-        ga('send', {
-            hitType: 'event',
-            eventCategory: action.currentActionTag,
-            eventAction: 'Image Uploaded'
+        gtag('event', 'Image Uploaded', {
+            'event_category': action.currentActionTag
         });
 
         var reader = new FileReader();
@@ -170,11 +168,10 @@ $(function () {
     };
 
     action.changeFrame = function (newURL, frameID, frameAuthor, frameAuthorURL, frameBackHex) {
-        ga('send', {
-            hitType: 'event',
-            eventCategory: action.currentActionTag,
-            eventAction: 'Changed Frame'
+        gtag('event', 'Changed Frame', {
+            'event_category': action.currentActionTag
         });
+
         action.selectedFrameID = frameID;
         $("#aFrameAuthor").html(frameAuthor);
         $("#aFrameAuthorURL").attr("href", frameAuthorURL);
@@ -206,12 +203,10 @@ $(function () {
     };
 
     action.chooseFrame = function () {
-        ga('send', {
-            hitType: 'event',
-            eventCategory: action.currentActionTag,
-            eventAction: 'Frame Selected'
+        gtag('event', 'Frame Selected', {
+            'event_category': action.currentActionTag
         });
-
+        
         var picWidth = 1080, picHeight = 1080;
 
         var frameImg = new Image();

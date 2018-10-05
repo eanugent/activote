@@ -3,10 +3,8 @@
     action.currentActionTag = "Registered";
 
     action.registered.start = function () {
-        ga('send', {
-            hitType: 'event',
-            eventCategory: 'Registered',
-            eventAction: 'Started'
+        gtag('event', 'Started', {
+            'event_category': 'Registered'
         });
 
         $.ajax({
@@ -18,11 +16,10 @@
     };
 
     action.registered.loadCheckReg = function () {
-        ga('send', {
-            hitType: 'event',
-            eventCategory: 'Registered',
-            eventAction: 'Check Registration'
+        gtag('event', 'Check Registration', {
+            'event_category': action.currentActionTag
         });
+
         $.ajax({
             url: activoteGlobal.sitePath + "Action/_CheckRegistration",            
             success: function (data) {
@@ -35,12 +32,10 @@
     };
 
     action.registered.registrationConfirmed = function () {
-        ga('send', {
-            hitType: 'event',
-            eventCategory: 'Registered',
-            eventAction: 'Confirmed Registration'
+        gtag('event', 'Confirmed Registration', {
+            'event_category': action.currentActionTag
         });
-
+                
         $.ajax({
             url: activoteGlobal.sitePath + "Action/RegistrationConfirmed",
             method: "POST",
@@ -65,11 +60,9 @@
     };
 
     action.registered.launchStateSite = function () {
-        ga('send', {
-            hitType: 'event',
-            eventCategory: 'Registered',
-            eventAction: 'Launched State Site'
-        });
+        gtag('event', 'Launched State Site', {
+            'event_category': action.currentActionTag
+        });        
 
         var url = $("#slState option:selected").data("url");
         if (url != null) {            
