@@ -27,20 +27,21 @@
             </div>
             <div id="main-nav-menu" class="navbar-collapse collapse">
                <div class="menu-wrapper">
-                <ul class="nav navbar-nav">
-                    @if (Person.LoggedInPerson != null)
-                    {
-                        <li>@Html.ActionLink("Action", "Action", "Person")</li>
-                        <li>@Html.ActionLink("My Contacts", "Contacts", "Person")</li>
-                        <li><a href="#" class="text-nowrap">Logged in as @Person.LoggedInPerson.Name</a></li>
-                        <li><a href="~/Person/Logout">Log Off</a></li>
-                    }
-                    else
-                    {
-                        <li><a href="~/Person/Login">Login</a></li>
-                    }                    
-                    <li></li>
-                </ul>
+                   <ul class="nav navbar-nav">
+                       <li><a href="mailto:info@activote.us">Contact Us</a></li>
+                       @if (Person.LoggedInPerson != null)
+                       {
+                           <li>@Html.ActionLink("Action", "Action", "Person")</li>
+                           <li>@Html.ActionLink("My Contacts", "Contacts", "Person")</li>
+                           <li><a href="#" class="text-nowrap">Logged in as @Person.LoggedInPerson.Name</a></li>
+                           <li><a href="~/Person/Logout">Log Off</a></li>
+                       }
+                       else
+                       {
+                           <li><a href="~/Person/Login">Login</a></li>
+                       }
+
+                   </ul>
                 </div>
             </div>          
         </div>
