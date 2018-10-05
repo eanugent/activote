@@ -169,10 +169,11 @@ $(function () {
         action.imgEditor.scaleImage(val, val);
     };
 
-    action.changeFrame = function (newURL, frameID, frameAuthor, frameAuthorURL) {
+    action.changeFrame = function (newURL, frameID, frameAuthor, frameAuthorURL, frameBackHex) {
         action.selectedFrameID = frameID;
         $("#aFrameAuthor").html(frameAuthor);
         $("#aFrameAuthorURL").attr("href", frameAuthorURL);
+        $("#imgEditor").css("background-color", frameBackHex);
         action.imgEditor.setImage({ url: newURL, closeButtonRequire: false, clickToSelect: false }, 1, false);
     };
 

@@ -15,7 +15,7 @@
             <div class="screen-content col-10 offset-md-1 col-md-4">
                 <input type="hidden" id="defaultFrameID" value="@ViewBag.DefaultFrameID" />
                 <div id="editor-wrapper">
-                    <div id="imgEditor" style="width: 100%;"></div>
+                    <div id="imgEditor" style="width: 100%;background-color:#@ViewBag.FrameBackgroundHex"></div>
                 </div>
                 <canvas id="downloadCanvas" style="display:none;"></canvas>
                 
@@ -35,7 +35,7 @@
                 @foreach (var f in Model)
                 {
                     <div class="frame">
-                        <img src="@f.URL" onclick="action.changeFrame('@f.URL', '@f.FrameGUID.ToString()', '@f.FrameAuthor', '@f.FrameAuthorURL')" />
+                        <img src="@f.URL" onclick="action.changeFrame('@f.URL', '@f.FrameGUID.ToString()', '@f.FrameAuthor', '@f.FrameAuthorURL', '#@f.BackgroundHex')" />
                     </div>
                 }
             </div>
