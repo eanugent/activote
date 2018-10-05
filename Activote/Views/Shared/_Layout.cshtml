@@ -5,20 +5,23 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-27971692-2"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-      gtag('config', 'UA-27971692-2');
+        gtag('config', 'UA-27971692-2');
     </script>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Activote: Activating Young Voters</title>
     <meta property="og:image" content="https://activote.us/Content/img/activote-social-thumb.jpg" />
-		<meta property="og:description" content="Activating the votes of Millenials one selfie at a time" />
-		<meta name="description" content="Activating the votes of Millenials one selfie at a time">
-   
+    <meta property="og:description" content="Activating the votes of Millenials one selfie at a time" />
+    <meta name="description" content="Activating the votes of Millenials one selfie at a time">
+    <meta property="og:url" content="https://activote.us" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Activote" />
+
     <link rel="apple-touch-icon" sizes="57x57" href="https://activote.us/Content/img/favi/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="https://activote.us/Content/img/favi/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="https://activote.us/Content/img/favi/apple-icon-72x72.png">
@@ -28,7 +31,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="https://activote.us/Content/img/favi/apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="https://activote.us/Content/img/favi/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="https://activote.us/Content/img/favi/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="https://activote.us/Content/img/favi/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://activote.us/Content/img/favi/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="https://activote.us/Content/img/favi/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="https://activote.us/Content/img/favi/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://activote.us/Content/img/favi/favicon-16x16.png">
@@ -36,12 +39,12 @@
     <meta name="msapplication-TileColor" content="#171918">
     <meta name="msapplication-TileImage" content="https://activote.us/Content/img/favi/ms-icon-144x144.png">
     <meta name="theme-color" content="#171918">
-    
-    
+
+
     @Styles.Render("~/Content/css/bootstrap.min.css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/main.css")
-    
+
     @RenderSection("styles", required: false)
 </head>
 <body>
