@@ -300,15 +300,15 @@ $(function () {
             method: "POST",
             success: function (data) {
                 action.imgDownloadString = activoteGlobal.sitePath + "Home/Photo/" + data;
-                action.loadDownloadImage();
+                action.loadDownloadImage(data);
                 $("#dvLoadingPercent").hide();
             }
         });
     };
 
-    action.loadDownloadImage = function () {
+    action.loadDownloadImage = function (id) {
         $.ajax({
-            url: activoteGlobal.sitePath + "Action/_DownloadImageView",
+            url: activoteGlobal.sitePath + "Action/_DownloadImageView/" + id,
             success: function (data) {
                 action.showNextStep(data);
                 $("#finalImage").attr("src", action.imgDownloadString);

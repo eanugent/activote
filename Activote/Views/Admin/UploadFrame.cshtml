@@ -6,7 +6,7 @@
 
 <form method="post" enctype="multipart/form-data" style="background-color:white;">
     @Html.AntiForgeryToken()
-    
+
     <input type="hidden" name="guid" value="@ViewBag.guid" />
     <div class="form-group">
         <label class="col-md-2">Action</label>
@@ -37,13 +37,19 @@
             <input type="text" class="form-control" name="FrameAuthorURL" />
         </div>
     </div>
-    @*<div class="form-group">
-        <label class="col-md-2">Square?</label>
+    <div class="form-group">
+        <label class="col-md-2">Background Hex Value (default is black)</label>
         <div class="col-md-10">
-            <input type="checkbox" name="IsSquare" value="true" />
-            <input type="hidden" name="IsSquare" value="false" />
+            <input type="text" class="form-control" name="BackgroundHex" value="000000" />
         </div>
-    </div>*@
+    </div>
+    @*<div class="form-group">
+            <label class="col-md-2">Square?</label>
+            <div class="col-md-10">
+                <input type="checkbox" name="IsSquare" value="true" />
+                <input type="hidden" name="IsSquare" value="false" />
+            </div>
+        </div>*@
     <div class="form-group">
         <div class="col-md-2">
             <input type="file" class="form-control" name="file" />

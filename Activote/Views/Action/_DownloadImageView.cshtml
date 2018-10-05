@@ -1,9 +1,20 @@
 ﻿
-<div class="screen-content col-10 col-md-4">   
+<div class="screen-content col-10 col-md-4">
 
     <div class="message">
         <h1 class="stars"><img style="width:100%;" src="" id="finalImage" /></h1>
-        <p>Press and hold the photo on a touchscreen device to save to your library. Then share!</p>
+        <p>
+            Press and hold the photo on a touchscreen device to save to your library. Then share!<br />
+            <span id="dvFB" class="fb-share-button"
+                  data-href="https://activote.us/home/photo/@ViewBag.guid"
+                  data-layout="button">
+            </span>
+
+            @*<a style="display:none;" href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Get your activote frame today!" 
+               data-url="https://activote.us/Home/Photo/@ViewBag.guid" 
+               data-hashtags="activote" data-show-count="false">Tweet</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>*@
+        </p>
     </div>
 
     <div class="action">
@@ -11,4 +22,17 @@
             <a class="btn btn-default action-btn red" id="btnDownloadImage" download="activote.jpg" href="#" onclick="action.downloadImage()">Download</a>
         </p>
     </div>
+
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Your share button code -->
+    
 </div>
