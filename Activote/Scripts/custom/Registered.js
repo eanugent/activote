@@ -3,6 +3,12 @@
     action.currentActionTag = "Registered";
 
     action.registered.start = function () {
+        ga('send', {
+            hitType: 'event',
+            eventCategory: 'Registered',
+            eventAction: 'Started'
+        });
+
         $.ajax({
             url: activoteGlobal.sitePath + "Action/_IsRegistered",
             success: function (data) {
@@ -12,6 +18,11 @@
     };
 
     action.registered.loadCheckReg = function () {
+        ga('send', {
+            hitType: 'event',
+            eventCategory: 'Registered',
+            eventAction: 'Check Registration'
+        });
         $.ajax({
             url: activoteGlobal.sitePath + "Action/_CheckRegistration",            
             success: function (data) {
@@ -24,6 +35,12 @@
     };
 
     action.registered.registrationConfirmed = function () {
+        ga('send', {
+            hitType: 'event',
+            eventCategory: 'Registered',
+            eventAction: 'Confirmed Registration'
+        });
+
         $.ajax({
             url: activoteGlobal.sitePath + "Action/RegistrationConfirmed",
             method: "POST",
@@ -48,6 +65,12 @@
     };
 
     action.registered.launchStateSite = function () {
+        ga('send', {
+            hitType: 'event',
+            eventCategory: 'Registered',
+            eventAction: 'Launched State Site'
+        });
+
         var url = $("#slState option:selected").data("url");
         if (url != null) {            
             action.registered.hideCheckReg();
