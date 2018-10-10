@@ -269,6 +269,10 @@ $(function () {
     };
 
     action.chooseMakePicPublic = function (choice) {
+        gtag('event', 'Make Public - ' + (choice ? 'Yes' : 'No'), {
+            'event_category': action.currentActionTag
+        });
+
         action.makePicPublic = choice;
         action.showLoading();
         $("#dvLoadingPercent").show();
