@@ -1,0 +1,77 @@
+﻿@if (ViewBag.InitView != null)
+{
+    <input type="hidden" id="InitView" value="@ViewBag.InitView" />
+}
+<!--
+    <div id="dvSlideShow">
+        <img style="width:25%" />
+        <img style="width:25%" />
+        <img style="width:25%" />
+        <img style="width:25%" />
+    </div>
+-->
+
+<div data-step="1" class="screen row justify-content-center align-items-center"></div>
+
+<div data-step="2" class="screen row justify-content-center align-items-center"></div>
+
+<div data-step="3" class="screen row justify-content-center align-items-center"></div>
+
+<div data-step="4" class="screen row justify-content-center align-items-center overlay"></div>
+
+<div data-step="5" class="screen row justify-content-center align-items-center"></div>
+
+<div data-step="6" class="screen row justify-content-center align-items-center"></div>
+
+<div data-step="7" class="screen row justify-content-center align-items-center"></div>
+
+<div data-step="8" class="screen row justify-content-center align-items-center"></div>
+
+<div id="dvCheckRegOverlay" class="screen overlay row justify-content-center align-items-center">
+    <button class="overlay-close" onclick="action.hideOverlay();" type="button">
+        <span class="close-icon"></span>
+    </button>
+    <div class="screen-content col-12 col-md-10 col-lg-5">
+        <div class="state-icon">
+            <img id="registeredStateImg" style="width: 100%; height: auto;" />
+        </div>
+        <div class="message">
+            <h1 class="stars">Launch state website to check registration</h1>
+            <p>Be sure to come back here when you’re done to create your Activote selfie.</p>
+        </div>
+        <div class="action">
+            <p>
+                <a href="#" target="_blank" id="aCheckRegLink" onclick="action.registered.launchStateSite()" class="btn btn-default action-btn red">Launch</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div id="dvLoading" class="row justify-content-center align-items-center">
+    <div class="load-wrapper"></div>
+
+    <div id="dvLoadingPercent" style="display:none;">
+        <span id="spLoading" class="text-nowrap">Loading: <span id="spLoadingPercent">0%</span></span>
+        <span id="spAlmostLoaded" style="display:none;">Almost done...</span>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDQAMdfqImWpKIHvkWfn4SUmzZkjYyUhs&libraries=places"></script>
+    <script src="~/Scripts/hammer.min.js"></script>
+    <script src="~/Scripts/ImageEditor.js"></script>
+    <script src="~/Scripts/custom/Action.js"></script>
+    <script src="~/Scripts/custom/Ready.js"></script>
+    <script src="~/Scripts/exif.js"></script>
+
+}
+
+@section styles{
+    <style>
+        .screen-div {
+            border: solid;
+            padding: 10px;
+        }
+    </style>
+
+}
