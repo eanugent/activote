@@ -31,7 +31,7 @@
                                 
                                 $("#spPollLocation").html(pAdd.locationName);
                                 $("#spPollAddressLine1").html(pAdd.line1);
-                                $("#spPollAddressLine1").html(pAdd.city + ", " + pAdd.state + " " + pAdd.zip);
+                                $("#spPollAddressLine2").html(pAdd.city + ", " + pAdd.state + " " + pAdd.zip);
                                 $("#spPollHours").html(pData.pollingLocations[0].pollingHours);
                                 $("#aAddToCalendar").attr("href", activoteGlobal.sitePath + "Home/GetICal?tzOffset=" + new Date().getTimezoneOffset().toString() + "&line1=" + encodeURIComponent(pAdd.line1) + "&city=" + encodeURIComponent(pAdd.city) + "&state=" + encodeURIComponent(pAdd.state) + "&zip=" + encodeURIComponent(pAdd.zip) + "&locationName=" + encodeURIComponent(pAdd.locationName));
                                 $("#aGetDirections").attr("href", "https://www.google.com/maps/place/" + encodeURIComponent(pAdd.line1 + ", " + pAdd.city + ", " + pAdd.state + " " + pAdd.zip));
