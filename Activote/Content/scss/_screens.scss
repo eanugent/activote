@@ -286,6 +286,14 @@
                 .label{
                     color: $red;
                 }
+                .alert-icon{
+                    padding: 1.85em 0;
+                    height: 3em;
+                    background-repeat: no-repeat;
+                    background-image: url(img/icon-alert.svg);
+                    background-position: center;
+                    background-size: contain;
+                }
             }
             .main-info{
                 z-index: 2;

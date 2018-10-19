@@ -483,6 +483,13 @@ input[type="submit"] {
         z-index: 1; }
         .screens-container .screen .info-card .context-info .label {
           color: #E81F4E; }
+        .screens-container .screen .info-card .context-info .alert-icon {
+          padding: 1.85em 0;
+          height: 3em;
+          background-repeat: no-repeat;
+          background-image: url(img/icon-alert.svg);
+          background-position: center;
+          background-size: contain; }
       .screens-container .screen .info-card .main-info {
         z-index: 2;
         background-color: white;
