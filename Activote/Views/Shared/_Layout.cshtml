@@ -46,6 +46,8 @@
     @Styles.Render("~/Content/main.css")
 
     @RenderSection("styles", required: false)
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 </head>
 <body>
     <div id="main-nav" class="navbar navbar-inverse fixed-top">
@@ -89,7 +91,7 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     @Scripts.Render("~/Content/lib/bootstrap.min.js")
-
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
         var activoteGlobal = {};
         $(function () {

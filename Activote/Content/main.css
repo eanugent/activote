@@ -37,14 +37,10 @@ h1, h2 {
   text-transform: uppercase;
   letter-spacing: .008em; }
 
-p, a, li {
+p, a, li, div {
   font-family: 'TTRoundsNeue','Arial Rounded','Helvetica Neue Light', 'Helvetica Neue',Arial,sans-serif;
   font-weight: normal;
   color: #171918; }
-
-strong {
-  font-family: 'TTRoundsNeue','Arial Rounded','Helvetica Neue Light', 'Helvetica Neue',Arial,sans-serif;
-  font-weight: normal; }
 
 article ul li {
   list-style-position: outside;
@@ -223,7 +219,7 @@ input[type="submit"] {
 .screens-container {
   height: 100vh;
   background-color: #171918;
-  overflow: hidden;
+  overflow-x: hidden;
   position: relative; }
   .screens-container .screen {
     height: 100vh;
@@ -234,6 +230,38 @@ input[type="submit"] {
     position: absolute;
     background-color: #F4F4F4;
     font-size: 1.1rem; }
+    .screens-container .screen ::-webkit-input-placeholder {
+      font-family: 'TTRoundsNeue','Arial Rounded','Helvetica Neue Light', 'Helvetica Neue',Arial,sans-serif;
+      font-weight: normal;
+      font-size: 1em;
+      color: rgba(7, 153, 245, 0.41); }
+    .screens-container .screen :-moz-placeholder {
+      /* Firefox 18- */
+      font-family: 'TTRoundsNeue','Arial Rounded','Helvetica Neue Light', 'Helvetica Neue',Arial,sans-serif;
+      font-weight: normal;
+      font-size: 1em;
+      color: rgba(7, 153, 245, 0.41); }
+    .screens-container .screen ::-moz-placeholder {
+      /* Firefox 19+ */
+      font-family: 'TTRoundsNeue','Arial Rounded','Helvetica Neue Light', 'Helvetica Neue',Arial,sans-serif;
+      font-weight: normal;
+      font-size: 1em;
+      color: rgba(7, 153, 245, 0.41); }
+    .screens-container .screen :-ms-input-placeholder {
+      font-family: 'TTRoundsNeue','Arial Rounded','Helvetica Neue Light', 'Helvetica Neue',Arial,sans-serif;
+      font-weight: normal;
+      font-size: 1em;
+      color: rgba(7, 153, 245, 0.41); }
+    .screens-container .screen ::placeholder {
+      font-family: 'TTRoundsNeue','Arial Rounded','Helvetica Neue Light', 'Helvetica Neue',Arial,sans-serif;
+      font-weight: normal;
+      font-size: 1em;
+      color: rgba(7, 153, 245, 0.41); }
+    .screens-container .screen.scroll {
+      overflow-x: hidden;
+      height: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 5em 0; }
     .screens-container .screen.active {
       -webkit-transition-delay: .5s;
       transition-delay: .5s;
@@ -323,6 +351,62 @@ input[type="submit"] {
         background-image: url(img/icon-x.svg);
         background-position: top center;
         background-size: contain; }
+    .screens-container .screen #polling-search {
+      margin: 2em 0 2.5em; }
+      .screens-container .screen #polling-search input {
+        width: 100%;
+        height: 3em;
+        border-radius: .3em;
+        border: 0.05em solid #0799F5;
+        text-indent: 1.1em; }
+    .screens-container .screen .info-card {
+      text-align: left;
+      margin-bottom: 1.5em; }
+      .screens-container .screen .info-card > div:first-child {
+        border-top-left-radius: .3em;
+        border-top-right-radius: .3em; }
+      .screens-container .screen .info-card > div:last-child {
+        border-bottom-left-radius: .3em;
+        border-bottom-right-radius: .3em; }
+      .screens-container .screen .info-card .section {
+        padding: 1.1em; }
+      .screens-container .screen .info-card .label {
+        font-weight: bold;
+        margin-bottom: .2em;
+        font-size: .8em; }
+      .screens-container .screen .info-card .data-large {
+        font-size: 1.1em;
+        line-height: 1.45em; }
+      .screens-container .screen .info-card .data-small {
+        font-size: .94em;
+        line-height: 1.1em; }
+      .screens-container .screen .info-card .action {
+        padding: .75em .75em 0;
+        margin-top: 0; }
+      .screens-container .screen .info-card .context-info {
+        background-color: #ECF0F1;
+        position: relative;
+        padding: 1.1em;
+        padding-bottom: 2em;
+        margin-bottom: -1em;
+        z-index: 1; }
+        .screens-container .screen .info-card .context-info .label {
+          color: #E81F4E; }
+      .screens-container .screen .info-card .main-info {
+        z-index: 2;
+        background-color: white;
+        padding: .85em 0;
+        position: relative; }
+        .screens-container .screen .info-card .main-info h1 {
+          margin-bottom: 0.35em; }
+        .screens-container .screen .info-card .main-info .sub-info {
+          border-top: 0.08em solid #ECF0F1;
+          border-bottom: 0.08em solid #ECF0F1; }
+          .screens-container .screen .info-card .main-info .sub-info .cell {
+            border-right: 0.08em solid #ECF0F1;
+            padding: 1em 1.1em; }
+            .screens-container .screen .info-card .main-info .sub-info .cell:last-child {
+              border-right: none; }
     @media (max-width: 340px) {
       .screens-container .screen {
         font-size: .9rem; } }

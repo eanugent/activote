@@ -55,9 +55,9 @@
 
 
 @mixin placeholder-properties-1{
-//    text-transform: uppercase;
-//    font-size: 18px;
-//    color: $text-grey;
+    @include body-font(normal);
+    font-size: 1em;
+    color: rgba(7,153,245,0.41);
 }
 
 @mixin place-holder-1{
@@ -73,4 +73,8 @@
     :-ms-input-placeholder {  
        @include placeholder-properties-1; 
     }
+    ::placeholder {  
+       @include placeholder-properties-1; 
+    }
+    
 }

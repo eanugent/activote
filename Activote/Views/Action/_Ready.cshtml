@@ -8,27 +8,29 @@
         <h1 class="stars">Get Your <span class="text-nowrap">Polling Place</span></h1>
     </div>
 </div>
-<div  style="margin-top:50px;" class="screen-content col-12 col-md-6">
-    <input id="selectAddress" type="text" />
+<div class="screen-content col-12 col-md-6">
+    <div id="polling-search">
+        <input id="selectAddress" type="text" />
+    </div>
     <div class="info-card">
         <div class="context-info">
-            <div class="label">Selected Address</div>
-            <p class="data-large data"><span id="spSelectedAddress"></span></p>
+            <div class="label">Selected Address:</div>
+            <div class="data-large data"><span id="spSelectedAddress"></span></div>
         </div>
         <div class="main-info">
             <header class="section">
-                <h2>Vote Here</h2>
+                <h1>Vote Here</h1>
                 <p><strong><span id="spPollLocation"></span></strong><br> <span id="spPollAddressLine1"></span><br /><span id="spPollAddressLine2"></span></p>
             </header>
-            <div class="sub-info container-fluid section">
+            <div class="sub-info container-fluid">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-6 cell">
                         <div class="label">Election Day</div>
-                        <p class="data-small data">Tues, NOV. 6th</p>
+                        <div class="data-small data">Tues, NOV. 6th</div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-6 cell">
                         <div class="label">Operating Hours</div>
-                        <p class="data-small data"><span id="spPollHours"></span></p>
+                        <div class="data-small data"><span id="spPollHours"></span></div>
                     </div>
                 </div>
             </div>
@@ -45,10 +47,10 @@
     <div class="info-card">
         <div class="main-info">
             <header class="section">
-                <h2>Vote Early</h2>
+                <h1>Vote Early</h1>
                 <p>Select one of the following locations to vote a day before Tuesday, November 6th.</p>
             </header>
-            <div class="sub-cards" style="display:none;">
+            <div id="early-voting-cards" class="sub-cards" style="display:none;">
                 <div class="cards">
                     <div class="card">
                         <p class="data-small data"><strong>Ronald McNair SR., High School</strong><br> 1804 Bouldercrest Rd, Atlanta, GA 30316</p>

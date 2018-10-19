@@ -12,15 +12,15 @@ h1, h2{
     text-transform: uppercase;
     letter-spacing: .008em;
 }
-p,a,li{
+p,a,li,div{
     @include body-font(normal);
     color: $black;
 //    font-size: 18px;
 //    line-height: 30px;
 }
-strong{
-    @include body-font(normal);
-}
+//strong{
+//    @include body-font(normal);
+//}
 article ul li{
     list-style-position: outside;
     list-style-type: circle;
