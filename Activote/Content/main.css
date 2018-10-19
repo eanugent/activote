@@ -529,9 +529,11 @@ input[type="submit"] {
             box-shadow: 0px 0px 0.5em 0px rgba(206, 216, 219, 0.6); }
             .screens-container .screen .info-card .main-info .sub-cards .card p.data-small {
               line-height: 1.45em; }
+              .screens-container .screen .info-card .main-info .sub-cards .card p.data-small a {
+                color: #0799F5;
+                text-decoration: underline; }
             .screens-container .screen .info-card .main-info .sub-cards .card .bold-link {
               font-size: 1.1em;
-              color: #E81F4E;
               position: absolute;
               bottom: 0;
               padding: 1em 0; }

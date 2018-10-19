@@ -8,7 +8,7 @@
         <input id="selectAddress" placeholder="Enter your street address" type="text" />
         <button onclick="action.ready.clearAddress()">Clear Address</button>
     </div>
-    <div class="info-card">
+    <div id="card-polling-place" class="info-card">
         <div class="context-info">
             <div class="label">Selected Address:</div>
             <div class="data-large data"><span id="spSelectedAddress"></span></div>
@@ -40,7 +40,7 @@
             </div>
         </div>
     </div>
-    <div class="info-card">
+    <div id="card-early-voting" class="info-card">
         <div class="main-info">
             <header class="section">
                 <h1>Vote Early</h1>
@@ -51,6 +51,19 @@
                    
                 </div>
 
+            </div>
+        </div>
+    </div>
+    <div id="card-registration" class="info-card">
+        <div class="main-info">
+            <header class="section">
+                <h1>Check Voter Registration</h1>
+                <p>Launch state website to check your voting registration. Be sure to come back here when you’re done to create your Activote selfie.</p>
+            </header>
+            <div class="action">
+                <p>
+                    <a href="#" target="_blank" id="aCheckRegLink" onclick="action.registered.launchStateSite()" class="btn btn-default action-btn red">Launch</a>
+                </p>
             </div>
         </div>
     </div>
