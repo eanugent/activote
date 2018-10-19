@@ -50,8 +50,8 @@
                 <h1>Vote Early</h1>
                 <p>Select one of the following locations to vote a day before Tuesday, November 6th.</p>
             </header>
-            <div id="early-voting-cards" class="sub-cards" style="display:none;">
-                <div class="cards">
+            <div class="sub-cards">
+                <div id="early-voting-cards" class="cards">
                     <div class="card">
                         <p class="data-small data"><strong>Ronald McNair SR., High School</strong><br> 1804 Bouldercrest Rd, Atlanta, GA 30316</p>
                     </div>
@@ -70,6 +70,30 @@
         </div>
     </div>
 </div>
+
+<script>
+    $( document ).ready(function() {
+        $('#early-voting-cards').slick({
+            infinite: false,
+            variableWidth: true,
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            swipeToSlide: true,
+            responsive:[
+               {
+                   breakpoint: 767.98,
+                   settings: {
+                       infinite: false,
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        swipeToSlide: true,
+                        arrows: false,
+                   }
+               }
+           ]
+        });
+    });
+</script>
 
 <div class="screen-content col-10 col-md-4 bottom-screen">
     <div class="message">
