@@ -1,6 +1,6 @@
-﻿
+﻿@model Activote.Models.EarlyVotingLocViewModel
 
 <div class="card">
-    <p class="data-small data"><strong>Ronald McNair SR., High School</strong><br> 1804 Bouldercrest Rd, Atlanta, GA 30316</p>
-    <a class="bold-link" onclick="action.ready.earyVoteMoreInfo()">More Info</a>
+    <p class="data-small data"><strong>@Model.locationName</strong><br> @Model.line1 <br />@Model.city, @Model.state  @Model.zip</p>
+    <a class="bold-link" onclick='action.ready.earyVoteMoreInfo(@Json.Encode(Model.locationName), @Json.Encode(Model.line1), @Json.Encode(Model.addressLine2), @Json.Encode(Model.pollingHours))'>More Info</a>
 </div>
