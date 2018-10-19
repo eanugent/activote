@@ -18,7 +18,7 @@
                 action.showNextStep(data);
                 action.ready.selectAdd = new google.maps.places.Autocomplete(document.getElementById('selectAddress'), null);
                 action.ready.selectAdd.addListener("place_changed", function () {
-                    $(".info-card").addClass("active");
+                    $(".info-card").removeClass("active");
                     //action.ready.selectAdd.setFields(['structured_address']);
                     //var place = action.ready.selectAdd.getPlace();
                     action.ready.selectedAddress = $("#selectAddress").val(); //place.formatted_address != undefined ? place.formatted_address : place.name;
@@ -33,7 +33,17 @@
                         },
                         success: function (pData) {
                             if (pData.pollingLocations != undefined && pData.pollingLocations.length > 0) {
+                                $("#card-polling-place").addClass("active");
+                                $("#card-registration").addClass("active");
+
                                 var pAdd = pData.pollingLocations[0].address;
+
+                                $.ajax({
+                                    url: activoteGlobal.sitePath + "Action/StateRegistrationURL/" + pAdd.state,
+                                    success: function (stURL) {
+                                        $("#aCheckRegLink").attr("href", stURL);
+                                    }
+                                });
 
                                 $("#spPollLocation").html(pAdd.locationName);
                                 $("#spPollAddressLine1").html(pAdd.line1);
@@ -43,7 +53,7 @@
                                 $("#aGetDirections").attr("href", "https://www.google.com/maps/place/" + encodeURIComponent(pAdd.line1 + ", " + pAdd.city + ", " + pAdd.state + " " + pAdd.zip));
                             }
                             else {
-                                alert('Polling location not yet available');
+                                $("#card-no-info").addClass("active");
                             }
 
                             if (pData.earlyVoteSites != undefined && pData.earlyVoteSites.length > 0) {
@@ -64,6 +74,7 @@
                                 //            alert('Geocode was not successful for the following reason: ' + status);
                                 //        }
                                 //    });
+                                $("#card-early-voting").addClass("active");
                                 if ($("#early-voting-cards").hasClass("slick-initialized")) {
                                     $("#early-voting-cards").slick("unslick");
                                     $("#early-voting-cards").html('');                                
@@ -72,7 +83,7 @@
                                 $('#early-voting-cards').slick({
                                     infinite: false,
                                     variableWidth: true,
-                                    slidesToShow: 1,
+                                    slidesToShow: 2,
                                     slidesToScroll: 1,
                                     swipeToSlide: true,
                                     responsive: [
