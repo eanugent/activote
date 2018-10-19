@@ -1,9 +1,4 @@
-﻿
-@{
-    ViewBag.Title = "_Ready";
-}
-
-<div class="screen-content col-10 col-md-4">
+﻿<div class="screen-content col-10 col-md-4">
     <div class="message">
         <h1 class="stars">Get Your <span class="text-nowrap">Polling Place</span></h1>
     </div>
@@ -11,6 +6,7 @@
 <div class="screen-content col-12 col-md-6">
     <div id="polling-search">
         <input id="selectAddress" type="text" />
+        <button onclick="action.ready.clearAddress()">Clear Address</button>
     </div>
     <div class="info-card">
         <div class="context-info">
@@ -54,6 +50,7 @@
                 <div id="early-voting-cards" class="cards">
                     <div class="card">
                         <p class="data-small data"><strong>Ronald McNair SR., High School</strong><br> 1804 Bouldercrest Rd, Atlanta, GA 30316</p>
+                        <a class="bold-link" onclick="action.ready.earyVoteMoreInfo()">More Info</a>
                     </div>
                     <div class="card">
                         <p class="data-small data"><strong>Ronald McNair SR., High School</strong><br> 1804 Bouldercrest Rd, Atlanta, GA 30316</p>

@@ -2,6 +2,11 @@
     action.ready = {};
     action.currentActionTag = "Ready";
 
+    action.ready.clearAddress = function(){
+        $("#selectAddress").val('');
+        $(".info-card").removeClass("active");
+    }
+
     action.ready.start = function () {
         gtag('event', 'Started', {
             'event_category': 'Ready'
@@ -13,22 +18,23 @@
                 action.showNextStep(data);
                 action.ready.selectAdd = new google.maps.places.Autocomplete(document.getElementById('selectAddress'), null);
                 action.ready.selectAdd.addListener("place_changed", function () {
-                    action.ready.selectAdd.setFields(['structured_address']);
-                    var place = action.ready.selectAdd.getPlace();
-                    var add = place.formatted_address != undefined ? place.formatted_address : place.name;
-                    $("#spSelectedAddress").html(add);
+                    $(".info-card").addClass("active");
+                    //action.ready.selectAdd.setFields(['structured_address']);
+                    //var place = action.ready.selectAdd.getPlace();
+                    action.ready.selectedAddress = $("#selectAddress").val(); //place.formatted_address != undefined ? place.formatted_address : place.name;
+                    $("#spSelectedAddress").html(action.ready.selectedAddress);
 
                     $.ajax({
                         url: 'https://www.googleapis.com/civicinfo/v2/voterinfo',
                         method: 'GET',
                         data: {
                             key: 'AIzaSyDDQAMdfqImWpKIHvkWfn4SUmzZkjYyUhs',
-                            address: add
+                            address: action.ready.selectedAddress
                         },
                         success: function (pData) {
                             if (pData.pollingLocations != undefined && pData.pollingLocations.length > 0) {
                                 var pAdd = pData.pollingLocations[0].address;
-                                
+
                                 $("#spPollLocation").html(pAdd.locationName);
                                 $("#spPollAddressLine1").html(pAdd.line1);
                                 $("#spPollAddressLine2").html(pAdd.city + ", " + pAdd.state + " " + pAdd.zip);
@@ -40,6 +46,54 @@
                                 alert('Polling location not yet available');
                             }
 
+                            if (pData.earlyVoteSites != undefined && pData.earlyVoteSites.length > 0) {
+                                //action.ready.geocoder = new google.maps.Geocoder();
+
+                                //action.ready.geocoder.geocode({ 'address': action.ready.selectedAddress },
+                                //    function (results, status) {
+                                //        if (status == 'OK') {
+                                //            action.ready.evMap = new google.maps.Map(document.getElementById('dvEarlyVoteMap'), { zoom: 8, center: results[0].geometry.location });
+                                //            $("#dvEarlyVoteMap").css("overflow", "visible");
+                                //            var marker = new google.maps.Marker({
+                                //                map: action.ready.evMap,
+                                //                position: results[0].geometry.location,
+                                //                label: 'Home',
+                                //                animation: google.maps.Animation.DROP
+                                //            });
+                                //        } else {
+                                //            alert('Geocode was not successful for the following reason: ' + status);
+                                //        }
+                                //    });
+
+
+                                $.each(pData.earlyVoteSites, function (index, value) {
+                                    value.address.pollingHours = value.pollingHours;
+                                    var evAdd = value.address;
+                                    //$.ajax({
+                                    //    url: activoteGlobal.sitePath + "Action/GetEarlyVoteCard",
+                                    //    data: JSON.stringify(value.address),
+                                    //    contentType: "application/json; charset=utf-8",
+                                    //    dataType: "json",
+                                    //    success: function (evData) {
+                                    //        $("#dvEarlyVoteCards").append(evData);
+                                    //    }
+                                    //});
+
+                                    //action.ready.geocoder.geocode({ 'address': evAdd.line1 + ', ' + evAdd.city + ', ' + evAdd.state + ' ' + evAdd.zip },
+                                    //    function (results, status) {
+                                    //        if (status == 'OK') {
+                                    //            var marker = new google.maps.Marker({
+                                    //                map: action.ready.evMap,
+                                    //                position: results[0].geometry.location,
+                                    //                label: value.address.locationName,
+                                    //                animation: google.maps.Animation.DROP
+                                    //            });
+                                    //        } else {
+                                    //            alert('Geocode was not successful for the following reason: ' + status);
+                                    //        }
+                                    //    });
+                                });
+                            }
                         }
                     });
                 });
