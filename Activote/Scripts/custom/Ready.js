@@ -64,20 +64,43 @@
                                 //            alert('Geocode was not successful for the following reason: ' + status);
                                 //        }
                                 //    });
-
+                                if ($("#early-voting-cards").hasClass("slick-initialized")) {
+                                    $("#early-voting-cards").slick("unslick");
+                                    $("#early-voting-cards").html('');                                
+                                }
+                                
+                                $('#early-voting-cards').slick({
+                                    infinite: false,
+                                    variableWidth: true,
+                                    slidesToShow: 2,
+                                    slidesToScroll: 1,
+                                    swipeToSlide: true,
+                                    responsive: [
+                                        {
+                                            breakpoint: 767.98,
+                                            settings: {
+                                                infinite: false,
+                                                slidesToShow: 1,
+                                                slidesToScroll: 1,
+                                                swipeToSlide: true,
+                                                arrows: false,
+                                            }
+                                        }
+                                    ]
+                                });
 
                                 $.each(pData.earlyVoteSites, function (index, value) {
                                     value.address.pollingHours = value.pollingHours;
                                     var evAdd = value.address;
-                                    //$.ajax({
-                                    //    url: activoteGlobal.sitePath + "Action/GetEarlyVoteCard",
-                                    //    data: JSON.stringify(value.address),
-                                    //    contentType: "application/json; charset=utf-8",
-                                    //    dataType: "json",
-                                    //    success: function (evData) {
-                                    //        $("#dvEarlyVoteCards").append(evData);
-                                    //    }
-                                    //});
+                                    $.ajax({
+                                        url: activoteGlobal.sitePath + "Action/_EarlyVotingLoc",
+                                        type: "POST",
+                                        data: JSON.stringify(value.address),
+                                        contentType: "application/json; charset=utf-8",
+                                        success: function (evData) {
+                                            $("#early-voting-cards").slick("slickAdd", evData);
+                                        }
+                                    });
 
                                     //action.ready.geocoder.geocode({ 'address': evAdd.line1 + ', ' + evAdd.city + ', ' + evAdd.state + ' ' + evAdd.zip },
                                     //    function (results, status) {
@@ -101,5 +124,12 @@
         });
     };
 
+    action.ready.earyVoteMoreInfo = function (name, line1, line2, hours) {
+        $("#evMoreInfoName").html(name);
+        $("#evMoreInfoAdd1").html(line1);
+        $("#evMoreInfoAdd2").html(line2);
+        $("#evMoreInfoHours").html(hours);
 
+        $("#dvEarlyVoteMoreInfo").addClass("active");
+    }
 });
