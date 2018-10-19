@@ -17,9 +17,11 @@ h1, h2{
     @include header-font;
     &.red{
         color: $red;
+        background-color: transparent !important;
     }
     &.blue{
         color: $blue;
+        background-color: transparent !important;
     }
 }
 p,a,li,div{

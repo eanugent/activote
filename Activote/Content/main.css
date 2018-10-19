@@ -41,9 +41,11 @@ h1, h2 {
   text-transform: uppercase;
   font-family: 'HeadingPro-Bold', 'Helvetica Neue','Roboto',Arial,Helvetica,sans-serif; }
   .bold-link.red {
-    color: #E81F4E; }
+    color: #E81F4E;
+    background-color: transparent !important; }
   .bold-link.blue {
-    color: #0799F5; }
+    color: #0799F5;
+    background-color: transparent !important; }
 
 p, a, li, div {
   font-family: 'TTRoundsNeue','Arial Rounded','Helvetica Neue Light', 'Helvetica Neue',Arial,sans-serif;
