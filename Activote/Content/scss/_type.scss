@@ -16,11 +16,11 @@ h1, h2{
     text-transform: uppercase;
     @include header-font;
     &.red{
-        color: $red;
+        color: $red !important;
         background-color: transparent !important;
     }
     &.blue{
-        color: $blue;
+        color: $blue !important;
         background-color: transparent !important;
     }
 }
