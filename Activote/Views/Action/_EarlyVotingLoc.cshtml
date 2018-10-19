@@ -1,6 +1,9 @@
 ﻿@model Activote.Models.EarlyVotingLocViewModel
 
 <div class="card">
-    <p class="data-small data"><strong>@Model.locationName</strong><br> @Model.line1 <br />@Model.city, @Model.state  @Model.zip</p>
+    <p class="data-small data">
+        <strong>@Model.locationName</strong><br>
+        <a target="_blank" href="https://www.google.com/maps/place/@Html.Encode(Model.line1 + ", " + Model.addressLine2)">@Model.line1 <br />@Model.city, @Model.state  @Model.zip</a>
+    </p>
     <a class="bold-link red" onclick='action.ready.earyVoteMoreInfo(@Json.Encode(Model.locationName), @Json.Encode(Model.line1), @Json.Encode(Model.addressLine2), @Json.Encode(Model.pollingHours))'>More Info</a>
 </div>
