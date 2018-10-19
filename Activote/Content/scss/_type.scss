@@ -12,6 +12,10 @@ h1, h2{
     text-transform: uppercase;
     letter-spacing: .008em;
 }
+.bold-link{
+    text-transform: uppercase;
+    @include header-font;
+}
 p,a,li,div{
     @include body-font(normal);
     color: $black;
