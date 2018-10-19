@@ -31,6 +31,7 @@ namespace Activote.Models
         public System.DateTime DateAdded { get; set; }
         public Nullable<int> AddedByPersonID { get; set; }
         public Nullable<int> FrameByteSize { get; set; }
+        public string BackgroundHex { get; set; }
     
         public virtual Action Action { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

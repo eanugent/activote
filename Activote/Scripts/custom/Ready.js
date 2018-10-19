@@ -18,6 +18,10 @@
                 action.showNextStep(data);
                 action.ready.selectAdd = new google.maps.places.Autocomplete(document.getElementById('selectAddress'), null);
                 action.ready.selectAdd.addListener("place_changed", function () {
+                    gtag('event', 'Selected Address', {
+                        'event_category': 'Ready'
+                    });
+
                     $(".info-card").removeClass("active");
                     //action.ready.selectAdd.setFields(['structured_address']);
                     //var place = action.ready.selectAdd.getPlace();
@@ -139,6 +143,7 @@
     };
 
     action.ready.earyVoteMoreInfo = function (name, line1, line2, hours) {
+
         $("#evMoreInfoName").html(name);
         $("#evMoreInfoAdd1").html(line1);
         $("#evMoreInfoAdd2").html(line2);

@@ -14,34 +14,68 @@ namespace Activote.Controllers
     public class ActionController : Controller
     {
         private activoteEntities db = new activoteEntities();
-        // GET: Action
+        [OutputCache(Duration = 86400, VaryByParam = "*")]
         public ActionResult _RegisteredWelcome()
         {
             return PartialView();
         }
 
+        [OutputCache(Duration = 86400, VaryByParam = "*")]
         public ActionResult _IsRegistered()
         {
             return PartialView();
         }
 
+        [OutputCache(Duration = 86400, VaryByParam = "*")]
         public ActionResult _CheckRegistration()
         {
             return PartialView(new activoteEntities().States.OrderBy(s => s.StateName).ToList());
         }
 
+        [OutputCache(Duration = 86400, VaryByParam = "*")]
         public ActionResult RegistrationConfirmed()
         {
             TrackedGUIDAccess.TrackedActionCompleted();
             return Json(new { success = true });
         }
 
-        public ActionResult _UploadImageView()
+        public string StateRegistrationURL(string id)
         {
-
+            var s = db.States.FirstOrDefault(st => st.StateAbbrev == id);
+            if(s != null)
+            {
+                return s.RegistrationURL;
+            }
+            else
+            {
+                return "";
+            }
+        }
+        public ActionResult _ReadyWelcome()
+        {
+            return PartialView();
+        }
+        
+        /*********************** Begin Ready Actions ***********************************/
+        public ActionResult _Ready()
+        {
             return PartialView();
         }
 
+        public ActionResult _EarlyVotingLoc(EarlyVotingLocViewModel md)
+        {
+            return PartialView(md);
+        }
+
+        /*********************** End Ready Actions ***********************************/
+
+        [OutputCache(Duration = 86400, VaryByParam = "*")]
+        public ActionResult _UploadImageView()
+        {
+            return PartialView();
+        }
+
+        [OutputCache(Duration = 60, VaryByParam = "*")]
         public ActionResult _ChooseFrame(string actionTag)
         {
             var frmID = db.Actions.FirstOrDefault(a => a.ActionTag == actionTag).DefaultFrameGUID;
@@ -49,15 +83,18 @@ namespace Activote.Controllers
             ViewBag.DefaultFrameID = frmID.ToString();
             ViewBag.FrameAuthor = defFrame.FrameAuthor;
             ViewBag.FrameAuthorURL = defFrame.FrameAuthorURL;
+            ViewBag.FrameBackgroundHex = defFrame.BackgroundHex;
             return PartialView(db.Frames.Where(f => f.Action.ActionTag == actionTag).ToList());
         }
 
+        [OutputCache(Duration = 86400, VaryByParam = "*")]
         public ActionResult _MakePicPublic()
         {
             return PartialView();
         }
 
         [ValidateAntiForgeryToken()]
+        [HttpPost]
         public string BuildImage(string pic, string actionTag, Guid frameID, float x, float y, float scale, float width, float height, bool makePublic)
         {
             pic = pic.Replace("data:image/jpeg;base64,", "").Replace("data:image/png;base64,", "");
@@ -66,10 +103,11 @@ namespace Activote.Controllers
 
             Graphics g = Graphics.FromImage(img);
             var picBytes = Convert.FromBase64String(pic);
-
-            g.DrawImage(Image.FromStream(new MemoryStream(picBytes)), x, y, width, height);
-
             var frm = db.Frames.FirstOrDefault(f => f.FrameGUID == frameID);
+
+            g.Clear(ColorTranslator.FromHtml("#" + frm.BackgroundHex));
+            g.DrawImage(Image.FromStream(new MemoryStream(picBytes)), x, y, width * scale, height * scale);
+
             g.DrawImage(Image.FromStream(new MemoryStream(frm.FrameBytes)), 0, 0, 1080, 1080);
 
             ImageCodecInfo jpgEncoder = GetEncoder(ImageFormat.Jpeg);
@@ -84,7 +122,9 @@ namespace Activote.Controllers
             var newPhoto = new Photo()
             {
                 PhotoBytes = outStream.ToArray(),
-                MakePublic = makePublic
+                MakePublic = makePublic,
+                PhotoByteSize = picBytes.Length,
+                 FrameGUID = frameID
             };
             newPhoto.ActionID = db.Actions.FirstOrDefault(a => a.ActionTag == actionTag).ActionID;
             if (Person.LoggedInPersonID > -1)
@@ -110,8 +150,10 @@ namespace Activote.Controllers
             return null;
         }
 
-        public ActionResult _DownloadImageView()
+        [OutputCache(Duration = 86400, VaryByParam = "*")]
+        public ActionResult _DownloadImageView(string id)
         {
+            ViewBag.guid = id;
             return PartialView();
         }
     }

@@ -13,7 +13,7 @@
 
 <div data-step="1" class="screen row justify-content-center align-items-center"></div>
 
-<div data-step="2" class="screen scroll row flex-column justify-content-center align-items-center"></div>
+<div data-step="2" class="screen row justify-content-center align-items-center"></div>
 
 <div data-step="3" class="screen row justify-content-center align-items-center"></div>
 
@@ -27,31 +27,29 @@
 
 <div data-step="8" class="screen row justify-content-center align-items-center"></div>
 
-<div id="dvEarlyVoteMoreInfo" class="screen overlay row justify-content-center align-items-center">
+<div id="dvCheckRegOverlay" class="screen overlay row justify-content-center align-items-center">
     <button class="overlay-close" onclick="action.hideOverlay();" type="button">
         <span class="close-icon"></span>
     </button>
-    <div class="screen-content col-12 col-md-10 col-lg-5">        
-        <h1><span id="evMoreInfoName"></span></h1>
-
-        <div class="section">
-            <div class="label">Address</div>
-            <a href="" id="evMapsLink" target="_blank">
-                <span id="evMoreInfoAdd1"></span><br />
-                <span id="evMoreInfoAdd2"></span>
-            </a>
-        </div>
-
-        <div class="section">
-            <div class="label">Hours of Operation</div>
-            <span id="evMoreInfoHours" style="white-space: pre-line"></span>
-        </div>
+    <div class="screen-content col-12 col-md-10 col-lg-5">
+    <div class="state-icon">
+        <img id="registeredStateImg" style="width: 100%; height: auto;"/>
+    </div>
+    <div class="message">
+        <h1 class="stars">Launch state website to check registration</h1>
+        <p>Be sure to come back here when you’re done to create your Activote selfie.</p>
+    </div>
+    <div class="action">
+        <p>
+            <a href="#" target="_blank" id="aCheckRegLink" onclick="action.registered.launchStateSite()" class="btn btn-default action-btn red">Launch</a>
+        </p>
+    </div>
     </div>
 </div>
 
 <div id="dvLoading" class="row justify-content-center align-items-center">
     <div class="load-wrapper"></div>
-
+    
     <div id="dvLoadingPercent" style="display:none;">
         <span id="spLoading" class="text-nowrap">Loading: <span id="spLoadingPercent">0%</span></span>
         <span id="spAlmostLoaded" style="display:none;">Almost done...</span>
@@ -59,13 +57,11 @@
 </div>
 
 @section scripts{
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDQAMdfqImWpKIHvkWfn4SUmzZkjYyUhs&libraries=places"></script>
     <script src="~/Scripts/hammer.min.js"></script>
     <script src="~/Scripts/ImageEditor.js"></script>
     <script src="~/Scripts/custom/Action.js"></script>
-    <script src="~/Scripts/custom/Ready.js"></script>
+    <script src="~/Scripts/custom/Registered.js"></script>
     <script src="~/Scripts/exif.js"></script>
-
 }
 
 @section styles{

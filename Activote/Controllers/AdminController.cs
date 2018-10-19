@@ -13,11 +13,11 @@ namespace Activote.Controllers
     {
         private activoteEntities db = new activoteEntities();
         [AllowAnonymous()]
-        public ActionResult UploadFrame(Guid id)
+        public ActionResult UploadFrame(Guid? id)
         {
-            if (db.People.Any(p => p.LoginGUID == id))
+            if (id.HasValue && db.People.Any(p => p.LoginGUID == id.Value))
             {
-                ViewBag.guid = id;
+                ViewBag.guid = id.Value;
                 return View(db.Actions.ToList());
             }
             else
@@ -36,6 +36,8 @@ namespace Activote.Controllers
                 frame.Person = pers;
                 frame.FrameExtension = Path.GetExtension(file.FileName);
                 frame.FrameByteSize = file.ContentLength;
+                frame.BackgroundHex = frame.BackgroundHex.Replace("#", "");
+                if (frame.BackgroundHex.Length != 6) frame.BackgroundHex = "000000";
                 using (BinaryReader br = new BinaryReader(file.InputStream))
                 {
                     frame.FrameBytes = br.ReadBytes(file.ContentLength);
