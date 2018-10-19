@@ -125,6 +125,26 @@
             }
         }
         
+        .photo-upload-button{
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+            & + label{
+                cursor: pointer;
+                text-align: left;
+                background-image: url(img/icon-camera.svg);
+                background-position: 18% center;
+                background-repeat: no-repeat;
+                background-size: 13%;
+                text-indent: 34%;
+                padding: .35em 0 !important;
+            }
+        }
+        
+        
         .overlay-close{
             
             @include rounded(0);

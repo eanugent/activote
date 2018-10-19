@@ -349,6 +349,22 @@ input[type="submit"] {
         margin-bottom: 2em;
         border-radius: 2em;
         cursor: pointer; }
+    .screens-container .screen .photo-upload-button {
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1; }
+      .screens-container .screen .photo-upload-button + label {
+        cursor: pointer;
+        text-align: left;
+        background-image: url(img/icon-camera.svg);
+        background-position: 18% center;
+        background-repeat: no-repeat;
+        background-size: 13%;
+        text-indent: 34%;
+        padding: .35em 0 !important; }
     .screens-container .screen .overlay-close {
       -moz-border-radius: 0 0 0 0;
       -webkit-border-radius: 0 0 0 0;
