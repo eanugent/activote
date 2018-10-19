@@ -15,6 +15,12 @@ h1, h2{
 .bold-link{
     text-transform: uppercase;
     @include header-font;
+    &.red{
+        color: $red;
+    }
+    &.blue{
+        color: $blue;
+    }
 }
 p,a,li,div{
     @include body-font(normal);
