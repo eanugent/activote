@@ -77,9 +77,9 @@
                                 $("#card-early-voting").addClass("active");
                                 if ($("#early-voting-cards").hasClass("slick-initialized")) {
                                     $("#early-voting-cards").slick("unslick");
-                                    $("#early-voting-cards").html('');                                
+                                    $("#early-voting-cards").html('');
                                 }
-                                
+
                                 $('#early-voting-cards').slick({
                                     infinite: false,
                                     variableWidth: true,
@@ -128,6 +128,9 @@
                                     //    });
                                 });
                             }
+                        },
+                        error: function () {
+                            $("#card-bad-address").addClass("active");
                         }
                     });
                 });
@@ -140,6 +143,8 @@
         $("#evMoreInfoAdd1").html(line1);
         $("#evMoreInfoAdd2").html(line2);
         $("#evMoreInfoHours").html(hours);
+
+        $("#evMapsLink").attr("href", "https://www.google.com/maps/place/" + encodeURIComponent(line1 + ", " + line2));
 
         $("#dvEarlyVoteMoreInfo").addClass("active");
     }
