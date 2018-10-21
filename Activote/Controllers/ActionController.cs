@@ -84,7 +84,12 @@ namespace Activote.Controllers
             ViewBag.FrameAuthor = defFrame.FrameAuthor;
             ViewBag.FrameAuthorURL = defFrame.FrameAuthorURL;
             ViewBag.FrameBackgroundHex = defFrame.BackgroundHex;
-            return PartialView(db.Frames.Where(f => f.Action.ActionTag == actionTag).ToList());
+            var md = (from f in db.Frames
+                      where f.Action.ActionTag == actionTag
+                      orderby f.FrameName
+                      select new { aID = f.ActionID, id = f.FrameGUID, auth = f.FrameAuthor, authurl = f.FrameAuthorURL, hex = f.BackgroundHex })
+                      .ToList().Select(f => new Frame() { ActionID = f.aID, FrameGUID = f.id, FrameAuthor = f.auth, FrameAuthorURL = f.authurl, BackgroundHex = f.hex }).ToList();
+            return PartialView(md);
         }
 
         [OutputCache(Duration = 0, VaryByParam = "*")]
