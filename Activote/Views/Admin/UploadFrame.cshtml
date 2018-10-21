@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Activote.Models.Action>
+﻿@model Activote.Models.UploadFrameViewModel
 
 @{
     ViewBag.Title = "UploadFrame";
@@ -12,7 +12,7 @@
         <label class="col-md-2">Action</label>
         <div class="col-md-10">
             <select class="form-control" name="ActionID">
-                @foreach (var a in Model)
+                @foreach (var a in Model.actions)
                 {
                     <option value="@a.ActionID">@a.ActionName</option>
                 }
@@ -61,3 +61,31 @@
         </div>
     </div>
 </form>
+<div style="background-color:white;">
+    @foreach (var f in Model.frames)
+    {
+        <span style="margin-right:10px;">
+            <a href="#" onclick="deleteFrame(@Json.Encode(f))">Delete</a>
+            <img style="width:300px" src="~/Home/Frame/@f" />            
+        </span>
+    }
+</div>
+
+@section scripts{
+    <script>
+        function deleteFrame(guid) {
+            if (confirm("Are you sure?")) {
+                $.ajax({
+                    url: activoteGlobal.sitePath + "Admin/DeleteFrame",
+                    data: { authGuid: '@ViewBag.guid', frameGuid: guid },
+                    success: function (result) {
+                        alert(result);
+                        if (result == "Success") {
+                            location.reload();
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+}

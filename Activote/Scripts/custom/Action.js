@@ -168,7 +168,7 @@ $(function () {
 
     action.resizeImageEditor = function () {
         var $el = $("#imgEditor");
-        if ($el.length > 0) {
+        if (action.imgEditor != undefined) {
             var elHeight = $el.outerHeight();
             var elWidth = $el.outerWidth();
             var elRatio = elHeight / elWidth;
@@ -331,8 +331,8 @@ action.completeInit = function () {
         success: function (data) {
             $("#dvChangeFrameOverlay").html(data);
             if ("ontouchstart" in document.documentElement) {
-                $("desktop-only").removeClass("d-md-block");
-                $("desktop-only").removeClass("d-lg-block");
+                $(".desktop-only").removeClass("d-md-block");
+                $(".desktop-only").removeClass("d-lg-block");
             }
         }
     });

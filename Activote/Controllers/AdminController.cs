@@ -18,7 +18,14 @@ namespace Activote.Controllers
             if (id.HasValue && db.People.Any(p => p.LoginGUID == id.Value))
             {
                 ViewBag.guid = id.Value;
-                return View(db.Actions.ToList());
+                var md = new UploadFrameViewModel()
+                {
+                    frames = (from f in db.Frames
+                              where f.Person.LoginGUID == id.Value
+                              select f.FrameGUID.ToString()).ToList(),
+                    actions = db.Actions.ToList()
+                };
+                return View(md);
             }
             else
             {
@@ -44,12 +51,38 @@ namespace Activote.Controllers
                 }
                 db.Frames.Add(frame);
                 db.SaveChanges();
-                return View(db.Actions.ToList());
+                var md = new UploadFrameViewModel()
+                {
+                    frames = (from f in db.Frames
+                              where f.Person.LoginGUID == guid
+                              select f.FrameGUID.ToString()).ToList(),
+                    actions = db.Actions.ToList()
+                };
+                ViewBag.guid = guid;
+                return View(md);
             }
             else
             {
                 return Content("Invalid or expired link");
             }
+        }
+
+        [AllowAnonymous()]
+        public string DeleteFrame(Guid authGuid, Guid frameGuid)
+        {
+            var pers = db.People.FirstOrDefault(p => p.LoginGUID == authGuid);
+            if (pers != null)
+            {
+                var f = db.Frames.Find(frameGuid);
+                if(f != null)
+                {
+                    db.Frames.Remove(f);
+                    db.SaveChanges();
+                    return "Success";
+                }
+            }
+
+            return "Failed";
         }
     }
 }

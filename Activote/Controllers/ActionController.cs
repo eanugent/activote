@@ -87,7 +87,7 @@ namespace Activote.Controllers
             return PartialView(db.Frames.Where(f => f.Action.ActionTag == actionTag).ToList());
         }
 
-        [OutputCache(Duration = 86400, VaryByParam = "*")]
+        [OutputCache(Duration = 0, VaryByParam = "*")]
         public ActionResult _MakePicPublic()
         {
             return PartialView();
