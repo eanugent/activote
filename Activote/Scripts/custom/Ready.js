@@ -153,4 +153,6 @@
 
         $("#dvEarlyVoteMoreInfo").addClass("active");
     }
+
+    action.completeInit();
 });

@@ -3,14 +3,15 @@
 $(function () {
     action.currentStep = 0;
 
-    $.ajax({
-        url: "https://ipapi.co/json/",
-        success: function (data) {
-            if (data != null && data.region_code != null) {
-                action.state = data.region_code;
-            }
-        }
-    });
+    //Set state by IP
+    //$.ajax({
+    //    url: "https://ipapi.co/json/",
+    //    success: function (data) {
+    //        if (data != null && data.region_code != null) {
+    //            action.state = data.region_code;
+    //        }
+    //    }
+    //});
 
     $(window).resize(function () {
         action.resizeImageEditor();
@@ -24,20 +25,12 @@ $(function () {
         $("#dvLoading").removeClass("loading");
     }
 
-    action.showNextStep = function (html, isOverlay) {
-        if (isOverlay == null) isOverlay = false;
-
-        if (isOverlay) {
-            $("#dvOverlay").html(html);
-            $("#dvOverlay").addClass("");
-        }
-        else {
-            action.currentStep++;
-            $(".screen").removeClass("active");
-            var stepDiv = $(".screen[data-step=" + action.currentStep.toString() + "]");
-            stepDiv.html(html);
-            stepDiv.addClass("active");
-        }
+    action.showNextStep = function (html) {
+        action.currentStep++;
+        $(".screen").removeClass("active");
+        var stepDiv = $(".screen[data-step=" + action.currentStep.toString() + "]");
+        stepDiv.html(html);
+        stepDiv.addClass("active");
     };
 
     action.hideOverlay = function () {
@@ -98,6 +91,7 @@ $(function () {
                     ctx.drawImage(thisImage, 0, 0);
                     ctx.restore();
                     action.usrImage = can.toDataURL();
+                    action.initImgEditor();
                 }
 
                 thisImage.src = URL.createObjectURL(file);
@@ -105,32 +99,25 @@ $(function () {
             else {
                 reader.onloadend = function () {
                     action.showLoading();
-                    action.usrImage = reader.result;                    
+                    action.usrImage = reader.result;
+                    action.initImgEditor();
+                   
                 }
                 if (file) {
                     reader.readAsDataURL(file);
                 }
-            }
-
-            $("#uploadPic").val('');
-            $.ajax({
-                url: activoteGlobal.sitePath + "Action/_ChooseFrame",
-                data: { actionTag: action.currentActionTag },
-                method: "POST",
-                success: function (data) {
-                    action.showNextStep(data);
-                    action.initImgEditor();
-                    if ("ontouchstart" in document.documentElement) {
-                        $("desktop-only").removeClass("d-md-block");
-                        $("desktop-only").removeClass("d-lg-block");
-                    }
-                    action.hideLoading();
-                }
-            });
+            }            
         });
     }
 
     action.initImgEditor = function () {
+        $("#uploadPic").val('');
+        $("#dvChangeFrameOverlay").addClass("active");
+        action.hideLoading();
+
+        if (action.imgEditor != undefined) {
+            $("#imgEditor").html("");
+        }
 
         var options = {
             imageUrls: [
@@ -142,7 +129,7 @@ $(function () {
             onInitCompleted: function () {
                 action.imgEditor.selectImage(0); // select most bottom image as current operating image
                 action.usrImageOrigPoint = action.imgEditor.activeImage.centerPoint;
-                console.log(action.imgEditor.activeImage.img.naturalHeight + ' x ' + action.imgEditor.activeImage.img.naturalWidth);
+                //console.log(action.imgEditor.activeImage.img.naturalHeight + ' x ' + action.imgEditor.activeImage.img.naturalWidth);
                 action.selectedFrameID = $("#defaultFrameID").val();
             }
         };
@@ -206,7 +193,7 @@ $(function () {
         gtag('event', 'Frame Selected', {
             'event_category': action.currentActionTag
         });
-        
+
         var picWidth = 1080, picHeight = 1080;
 
         var frameImg = new Image();
@@ -282,7 +269,7 @@ $(function () {
                 //Upload progress
                 xhr.upload.addEventListener("progress", function (evt) {
                     if (evt.lengthComputable) {
-                        var percentComplete = (evt.loaded / evt.total) * 100;                        
+                        var percentComplete = (evt.loaded / evt.total) * 100;
                         if (percentComplete < 99) {
                             $("#spLoadingPercent").html(Math.trunc(percentComplete).toString() + "%");
                         }
@@ -292,14 +279,6 @@ $(function () {
                         }
                     }
                 }, false);
-                //Download progress
-                //xhr.addEventListener("progress", function (evt) {
-                //    if (evt.lengthComputable) {
-                //        var percentComplete = evt.loaded / evt.total;
-                //        //Do something with download progress
-                //        console.log(percentComplete);
-                //    }
-                //}, false);
                 return xhr;
             },
             url: activoteGlobal.sitePath + "Action/BuildImage",
@@ -343,3 +322,18 @@ $(function () {
         });
     }
 });
+
+action.completeInit = function () {
+    $.ajax({
+        url: activoteGlobal.sitePath + "Action/_ChooseFrame",
+        data: { actionTag: action.currentActionTag },
+        method: "POST",
+        success: function (data) {
+            $("#dvChangeFrameOverlay").html(data);
+            if ("ontouchstart" in document.documentElement) {
+                $("desktop-only").removeClass("d-md-block");
+                $("desktop-only").removeClass("d-lg-block");
+            }
+        }
+    });
+}
