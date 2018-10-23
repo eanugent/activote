@@ -19,8 +19,12 @@
             overflow-x: hidden;
             height: auto;
             min-height: 100vh;
+            max-height: 100vh;
             -webkit-overflow-scrolling: touch;
             padding: 5em 0;
+            &.active{
+                max-height: none;
+            }
         }
         
         &.active{

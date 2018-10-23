@@ -272,8 +272,11 @@ input[type="submit"] {
       overflow-x: hidden;
       height: auto;
       min-height: 100vh;
+      max-height: 100vh;
       -webkit-overflow-scrolling: touch;
       padding: 5em 0; }
+      .screens-container .screen.scroll.active {
+        max-height: none; }
     .screens-container .screen.active {
       -webkit-transition-delay: .5s;
       transition-delay: .5s;
