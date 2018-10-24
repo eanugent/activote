@@ -574,6 +574,40 @@ input[type="submit"] {
 .black {
   background-color: #171918; }
 
+.modal .modal-content {
+  border: none;
+  border-radius: 0 !important; }
+  .modal .modal-content .modal-header {
+    border: none !important; }
+
+.modal .close span {
+  color: #E81F4E !important;
+  font-family: 'HeadingPro-Bold', 'Helvetica Neue','Roboto',Arial,Helvetica,sans-serif;
+  font-size: 2em;
+  text-shadow: none; }
+
+.modal-backdrop {
+  background-color: #171918;
+  opacity: 0.92;
+  filter: alpha(opacity=92); }
+
+.embed-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  height: 70vh; }
+
+.embed-container iframe,
+.embed-container object,
+.embed-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
+
 .author-info {
   text-align: left;
   margin-bottom: .25em;
