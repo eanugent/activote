@@ -39,7 +39,7 @@
             background-color: $black;
             transition: top .5s ease-in-out;
             opacity: 1;
-            z-index: 2;
+            z-index: 2000;
             top: 125vh;
             position: fixed;
             height: 100vh;
@@ -273,12 +273,15 @@
                 line-height: 1.1em;
             }
             .action{
-                padding: .75em .75em 0;
+                padding: .75em; 
                 margin-top: 0;
                 text-align: center;
                 .action-btn{
                     max-width: 100%;
                 }
+            }
+            &#card-polling-place .action{
+                padding: .75em .75em 0; 
             }
             .context-info{
                 background-color: $light-grey;

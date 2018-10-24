@@ -287,7 +287,7 @@ input[type="submit"] {
       background-color: #171918;
       transition: top .5s ease-in-out;
       opacity: 1;
-      z-index: 2;
+      z-index: 2000;
       top: 125vh;
       position: fixed;
       height: 100vh;
@@ -474,11 +474,13 @@ input[type="submit"] {
         font-size: .94em;
         line-height: 1.1em; }
       .screens-container .screen .info-card .action {
-        padding: .75em .75em 0;
+        padding: .75em;
         margin-top: 0;
         text-align: center; }
         .screens-container .screen .info-card .action .action-btn {
           max-width: 100%; }
+      .screens-container .screen .info-card#card-polling-place .action {
+        padding: .75em .75em 0; }
       .screens-container .screen .info-card .context-info {
         background-color: #ECF0F1;
         position: relative;
