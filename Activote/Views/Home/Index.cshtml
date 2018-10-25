@@ -28,10 +28,10 @@
 <div data-step="8" class="screen row justify-content-center align-items-center"></div>
 
 <div id="dvEarlyVoteMoreInfo" class="screen overlay row justify-content-center align-items-center">
-    <button class="overlay-close" onclick="action.hideOverlay();" type="button">
+    <button class="overlay-close" onclick="$('#dvEarlyVoteMoreInfo').removeClass('active');" type="button">
         <span class="close-icon"></span>
     </button>
-    <div class="screen-content col-12 col-md-10 col-lg-5">        
+    <div class="screen-content col-12 col-md-10 col-lg-5">
         <h1><span id="evMoreInfoName"></span></h1>
 
         <div class="section">
@@ -48,6 +48,15 @@
         </div>
     </div>
 </div>
+
+@*<div id="dvEVOverlay" class="screen overlay row justify-content-center align-items-center">
+    <button class="overlay-close" onclick="$('#dvEVOverlay').removeClass('active');" type="button">
+        <span class="close-icon"></span>
+    </button>
+    <div class="screen-content col-12 col-md-10 col-lg-5">
+        <div id="dvEarlyVoteMap" style="width: 600px; height: 400px;"></div>
+    </div>
+</div>*@
 
 <div id="dvChangeFrameOverlay" class="screen overlay row justify-content-center align-items-center">
 

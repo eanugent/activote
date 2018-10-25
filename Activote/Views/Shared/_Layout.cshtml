@@ -59,36 +59,36 @@
                 @Html.ActionLink("Activote", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div id="main-nav-menu" class="navbar-collapse collapse">
-               <div class="menu-wrapper">
-                   <ul class="nav navbar-nav">
-                       <li><a href="mailto:info@activote.us">Contact Us</a></li>
-                       @if (Person.LoggedInPerson != null)
-                       {
-                           <li>@Html.ActionLink("Action", "Action", "Person")</li>
-                           <li>@Html.ActionLink("My Contacts", "Contacts", "Person")</li>
-                           <li><a href="#" class="text-nowrap">Logged in as @Person.LoggedInPerson.Name</a></li>
-                           <li><a href="~/Person/Logout">Log Off</a></li>
-                       }
-                       else
-                       {
-                           <li><a href="~/Person/Login">Login</a></li>
-                       }
+                <div class="menu-wrapper">
+                    <ul class="nav navbar-nav">
+                        <li><a href="mailto:info@activote.us">Contact Us</a></li>
+                        @if (Person.LoggedInPerson != null)
+                        {
+                            <li>@Html.ActionLink("Action", "Action", "Person")</li>
+                            <li>@Html.ActionLink("My Contacts", "Contacts", "Person")</li>
+                            <li><a href="#" class="text-nowrap">Logged in as @Person.LoggedInPerson.Name</a></li>
+                            <li><a href="~/Person/Logout">Log Off</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="~/Person/Login">Login</a></li>
+                        }
 
-                   </ul>
+                    </ul>
                 </div>
-            </div>          
+            </div>
         </div>
     </div>
     <div class="container-fluid body-content screens-container text-center">
         @RenderBody()
-        
+
     </div>
     @*<hr />*@
     <footer>
         @*<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>*@
     </footer>
-    
-    
+
+
     <div class="modal" tabindex="-1" role="dialog" id="introModal">
         <div class="modal-dialog" style="max-width:95%" role="document">
             <div class="modal-content">
@@ -99,20 +99,41 @@
                     </button>
                 </div>
                 <div class="modal-body ">
-                   <div class="embed-container">
-                    <iframe src="https://player.vimeo.com/video/296435742" width="640" height="1138" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    <div class="embed-container">
+                        <iframe src="https://player.vimeo.com/video/296435742" width="640" height="1138" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                     </div>
                 </div>
                 @*<div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>*@
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>*@
             </div>
         </div>
     </div>
-    
-    <input type="hidden" id="SitePath" value="~/" />    
-    
+
+    <div class="modal" tabindex="-1" role="dialog" id="evMapModal">
+        <div class="modal-dialog" style="max-width:95%; height:100%" role="document">
+            <div class="modal-content" style="height:100%">
+                <div class="modal-header">
+                    <h1 class="modal-title">Early Voting</h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body ">
+                        <div id="dvEarlyVoteMap" style="width: 600px; height: 80vh;"></div>
+                    
+                </div>
+                @*<div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" id="SitePath" value="~/" />
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     @Scripts.Render("~/Content/lib/bootstrap.min.js")
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>

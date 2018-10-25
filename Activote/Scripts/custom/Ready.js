@@ -1,8 +1,9 @@
 ﻿$(function () {
     action.ready = {};
     action.currentActionTag = "Ready";
+    action.ready.earlyVoteMapAddress = "";
 
-    action.ready.clearAddress = function(){
+    action.ready.clearAddress = function () {
         $("#selectAddress").val('');
         $(".info-card").removeClass("active");
     }
@@ -61,23 +62,8 @@
                             }
 
                             if (pData.earlyVoteSites != undefined && pData.earlyVoteSites.length > 0) {
-                                //action.ready.geocoder = new google.maps.Geocoder();
+                                action.ready.earlyVoteSites = pData.earlyVoteSites;
 
-                                //action.ready.geocoder.geocode({ 'address': action.ready.selectedAddress },
-                                //    function (results, status) {
-                                //        if (status == 'OK') {
-                                //            action.ready.evMap = new google.maps.Map(document.getElementById('dvEarlyVoteMap'), { zoom: 8, center: results[0].geometry.location });
-                                //            $("#dvEarlyVoteMap").css("overflow", "visible");
-                                //            var marker = new google.maps.Marker({
-                                //                map: action.ready.evMap,
-                                //                position: results[0].geometry.location,
-                                //                label: 'Home',
-                                //                animation: google.maps.Animation.DROP
-                                //            });
-                                //        } else {
-                                //            alert('Geocode was not successful for the following reason: ' + status);
-                                //        }
-                                //    });
                                 $("#card-early-voting").addClass("active");
                                 if ($("#early-voting-cards").hasClass("slick-initialized")) {
                                     $("#early-voting-cards").slick("unslick");
@@ -106,7 +92,6 @@
 
                                 $.each(pData.earlyVoteSites, function (index, value) {
                                     value.address.pollingHours = value.pollingHours;
-                                    var evAdd = value.address;
                                     $.ajax({
                                         url: activoteGlobal.sitePath + "Action/_EarlyVotingLoc",
                                         type: "POST",
@@ -116,20 +101,6 @@
                                             $("#early-voting-cards").slick("slickAdd", evData);
                                         }
                                     });
-
-                                    //action.ready.geocoder.geocode({ 'address': evAdd.line1 + ', ' + evAdd.city + ', ' + evAdd.state + ' ' + evAdd.zip },
-                                    //    function (results, status) {
-                                    //        if (status == 'OK') {
-                                    //            var marker = new google.maps.Marker({
-                                    //                map: action.ready.evMap,
-                                    //                position: results[0].geometry.location,
-                                    //                label: value.address.locationName,
-                                    //                animation: google.maps.Animation.DROP
-                                    //            });
-                                    //        } else {
-                                    //            alert('Geocode was not successful for the following reason: ' + status);
-                                    //        }
-                                    //    });
                                 });
                             }
                         },
@@ -152,6 +123,89 @@
         $("#evMapsLink").attr("href", "https://www.google.com/maps/place/" + encodeURIComponent(line1 + ", " + line2));
 
         $("#dvEarlyVoteMoreInfo").addClass("active");
+    }
+
+    action.ready.showEarlyVoteMap = function () {        
+        $("#evMapModal").modal("show");
+        if (action.ready.earlyVoteMapAddress != action.ready.selectedAddress) {            
+            action.ready.earlyVoteMapAddress = action.ready.selectedAddress;
+            action.ready.geocoder = new google.maps.Geocoder();
+
+            action.ready.geocoder.geocode({ 'address': action.ready.selectedAddress },
+                function (results, status) {
+                    if (status == 'OK') {
+                        action.ready.evMap = new google.maps.Map(document.getElementById('dvEarlyVoteMap'), { zoom: 10, center: results[0].geometry.location });
+                        $("#dvEarlyVoteMap").css("width", "100%");
+                        var marker = new google.maps.Marker({
+                            map: action.ready.evMap,
+                            position: results[0].geometry.location,
+                            label: 'Home',
+                            animation: google.maps.Animation.DROP
+                        });
+                    } else {
+                        alert('Geocode was not successful for the following reason: ' + status);
+                    }
+                });
+
+            action.ready.earlyVoteMarkerIndex = 0;
+            action.ready.addEarlyVoteMarkers();
+        }
+    }
+
+    action.ready.addEarlyVoteMarkers = function () {
+        setTimeout(function () {
+            var evData = action.ready.earlyVoteSites[action.ready.earlyVoteMarkerIndex];
+            var evAdd = evData.address;            
+
+            $.ajax({
+                url: activoteGlobal.sitePath + "Home/FindLatLong",
+                data: { key: evAdd.line1 + " " + evAdd.zip },
+                method: "POST",
+                success: function (llData) {
+                    if (llData.found) {
+                        action.ready.addEarlyVoteMarker(evData, evAdd, { lat: llData.lat, lng: llData.lng });
+                    }
+                    else {
+                        action.ready.geocoder.geocode({ 'address': evAdd.line1 + ', ' + evAdd.city + ', ' + evAdd.state + ' ' + evAdd.zip },
+                            function (results, status) {
+                                if (status == 'OK') {
+                                    var loc = results[0].geometry.location;
+                                    action.ready.addEarlyVoteMarker(evData, evAdd, loc);
+                                    $.ajax({
+                                        url: activoteGlobal.sitePath + "Home/AddLatLong",
+                                        data: { key: evAdd.line1 + " " + evAdd.zip, lat: loc.lat, lng: loc.lng },
+                                        method: "POST",
+                                        success: function (data) {
+                                            if (!data.success) {
+                                                console.log("Error caching Lat/Lng: " + evAdd.line1 + " " + evAdd.zip);
+                                            }
+                                        }
+                                    });
+                                } else {
+                                    alert('Geocode was not successful for the following reason: ' + status);
+                                }
+                            });
+                    }
+                }
+            });
+
+            action.ready.earlyVoteMarkerIndex++;
+
+            if (action.ready.earlyVoteMarkerIndex < action.ready.earlyVoteSites.length) {
+                action.ready.addEarlyVoteMarkers();
+            }
+        },
+            500
+        );
+    }
+
+    action.ready.addEarlyVoteMarker = function (evData, evAdd, location) {
+        var marker = new google.maps.Marker({
+            map: action.ready.evMap,
+            position: location,
+            animation: google.maps.Animation.DROP
+        });
+        marker.addListener('click', function () { action.ready.earyVoteMoreInfo(evAdd.locationName, evAdd.line1, evAdd.city + ', ' + evAdd.state + ' ' + evAdd.zip, evData.pollingHours) });
     }
 
     action.completeInit();

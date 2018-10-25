@@ -51,12 +51,13 @@ namespace Activote.Controllers
                 return "";
             }
         }
+
+        /*********************** Begin Ready Actions ***********************************/
         public ActionResult _ReadyWelcome()
         {
             return PartialView();
         }
-        
-        /*********************** Begin Ready Actions ***********************************/
+
         public ActionResult _Ready()
         {
             return PartialView();
