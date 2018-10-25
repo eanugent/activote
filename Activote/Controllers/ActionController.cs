@@ -57,7 +57,7 @@ namespace Activote.Controllers
         {
             return PartialView();
         }
-
+        
         public ActionResult _Ready()
         {
             return PartialView();
