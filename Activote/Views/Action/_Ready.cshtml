@@ -32,10 +32,10 @@
             </div>
             <div class="action">
                 <p>
-                    <a href="#" id="aAddToCalendar" class="btn btn-default action-btn red">Add to Calendar</a>
+                    <a href="#" id="aAddToCalendar" onclick="gtag('event', 'Add to Calendar', {'event_category': 'Ready'});" class="btn btn-default action-btn red">Add to Calendar</a>
                 </p>
                 <p>
-                    <a href="#" id="aGetDirections" target="_blank" class="btn btn-default action-btn blue">Get Directions</a>
+                    <a href="#" id="aGetDirections" onclick="gtag('event', 'Get Directions', {'event_category': 'Ready'});" target="_blank" class="btn btn-default action-btn blue">Get Directions</a>
                 </p>
             </div>
         </div>
@@ -67,7 +67,7 @@
             </header>
             <div class="action">
                 <p>
-                    <a href="#" target="_blank" id="aCheckRegLink" class="btn btn-default action-btn red">Launch</a>
+                    <a href="#" target="_blank" id="aCheckRegLink" onclick="gtag('event', 'Check Registration', {'event_category': 'Ready'});" class="btn btn-default action-btn red">Launch</a>
                 </p>
             </div>
         </div>

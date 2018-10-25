@@ -24,9 +24,7 @@
                     });
 
                     $(".info-card").removeClass("active");
-                    //action.ready.selectAdd.setFields(['structured_address']);
-                    //var place = action.ready.selectAdd.getPlace();
-                    action.ready.selectedAddress = $("#selectAddress").val(); //place.formatted_address != undefined ? place.formatted_address : place.name;
+                    action.ready.selectedAddress = $("#selectAddress").val();
                     $("#spSelectedAddress").html(action.ready.selectedAddress);
 
                     $.ajax({
@@ -170,7 +168,7 @@
                     var waitBeforeNext = false;
                     if (llData.found) {
                         action.ready.addEarlyVoteMarker(evData, evAdd, { lat: llData.lat, lng: llData.lng });
-                        
+
                         action.ready.earlyVoteMarkerIndex++;
                         if (action.ready.earlyVoteMarkerIndex < action.ready.earlyVoteSites.length) {
                             action.ready.addEarlyVoteMarkers(false);
@@ -193,7 +191,7 @@
                                             }
                                         }
                                     });
-                                    
+
                                     waitBeforeNext = false;
                                 } else if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
                                     action.ready.earlyVoteMarkerIndex--;
@@ -222,7 +220,14 @@
             position: location,
             animation: google.maps.Animation.DROP
         });
-        marker.addListener('click', function () { action.ready.earyVoteMoreInfo(evAdd.locationName, evAdd.line1, evAdd.city + ', ' + evAdd.state + ' ' + evAdd.zip, evData.pollingHours) });
+        marker.addListener('click',
+            function () {
+                action.ready.earyVoteMoreInfo(
+                    evAdd.locationName,
+                    evAdd.line1,
+                    evAdd.city + ', ' + evAdd.state + ' ' + evAdd.zip,
+                    evData.pollingHours)
+            });
     }
 
     action.completeInit();
