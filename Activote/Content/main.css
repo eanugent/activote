@@ -226,12 +226,14 @@ input[type="submit"] {
             text-decoration: none;
             color: #E81F4E; }
 
+body:not(.modal-open) {
+  -webkit-overflow-scrolling: touch; }
+
 .screens-container {
   height: 100vh;
   background-color: #171918;
   overflow-x: hidden;
-  position: relative;
-  -webkit-overflow-scrolling: touch; }
+  position: relative; }
   .screens-container .screen {
     height: 100vh;
     width: 100vw;

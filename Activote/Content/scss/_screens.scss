@@ -1,9 +1,12 @@
+body:not(.modal-open){
+    -webkit-overflow-scrolling: touch;
+}
+
 .screens-container{
     height: 100vh;
     background-color: $black;
     overflow-x: hidden;
     position: relative;
-    -webkit-overflow-scrolling: touch;
     
     .screen{
         height: 100vh;
