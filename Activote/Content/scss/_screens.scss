@@ -1,5 +1,7 @@
 body:not(.modal-open){
-    -webkit-overflow-scrolling: touch;
+    .screens-container{
+        -webkit-overflow-scrolling: touch;
+    }
 }
 
 .screens-container{

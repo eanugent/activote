@@ -226,7 +226,7 @@ input[type="submit"] {
             text-decoration: none;
             color: #E81F4E; }
 
-body:not(.modal-open) {
+body:not(.modal-open) .screens-container {
   -webkit-overflow-scrolling: touch; }
 
 .screens-container {
