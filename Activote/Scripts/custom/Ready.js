@@ -128,6 +128,10 @@
     action.ready.showEarlyVoteMap = function () {        
         $("#evMapModal").modal("show");
         if (action.ready.earlyVoteMapAddress != action.ready.selectedAddress) {            
+            gtag('event', 'Early Voting Map', {
+                'event_category': 'Ready'
+            });
+
             action.ready.earlyVoteMapAddress = action.ready.selectedAddress;
             action.ready.geocoder = new google.maps.Geocoder();
 
