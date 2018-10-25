@@ -125,9 +125,9 @@
         $("#dvEarlyVoteMoreInfo").addClass("active");
     }
 
-    action.ready.showEarlyVoteMap = function () {        
+    action.ready.showEarlyVoteMap = function () {
         $("#evMapModal").modal("show");
-        if (action.ready.earlyVoteMapAddress != action.ready.selectedAddress) {            
+        if (action.ready.earlyVoteMapAddress != action.ready.selectedAddress) {
             gtag('event', 'Early Voting Map', {
                 'event_category': 'Ready'
             });
@@ -156,20 +156,28 @@
         }
     }
 
-    action.ready.addEarlyVoteMarkers = function () {
+    action.ready.addEarlyVoteMarkers = function (delayNext) {
+        var timeout = delayNext ? 200 : 0;
         setTimeout(function () {
             var evData = action.ready.earlyVoteSites[action.ready.earlyVoteMarkerIndex];
-            var evAdd = evData.address;            
+            var evAdd = evData.address;
 
             $.ajax({
                 url: activoteGlobal.sitePath + "Home/FindLatLong",
                 data: { key: evAdd.line1 + " " + evAdd.zip },
                 method: "POST",
                 success: function (llData) {
+                    var waitBeforeNext = false;
                     if (llData.found) {
                         action.ready.addEarlyVoteMarker(evData, evAdd, { lat: llData.lat, lng: llData.lng });
+                        
+                        action.ready.earlyVoteMarkerIndex++;
+                        if (action.ready.earlyVoteMarkerIndex < action.ready.earlyVoteSites.length) {
+                            action.ready.addEarlyVoteMarkers(false);
+                        }
                     }
                     else {
+
                         action.ready.geocoder.geocode({ 'address': evAdd.line1 + ', ' + evAdd.city + ', ' + evAdd.state + ' ' + evAdd.zip },
                             function (results, status) {
                                 if (status == 'OK') {
@@ -185,21 +193,26 @@
                                             }
                                         }
                                     });
-                                } else {
+                                    
+                                    waitBeforeNext = false;
+                                } else if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
+                                    action.ready.earlyVoteMarkerIndex--;
+                                    waitBeforeNext = true;
+                                }
+                                else {
                                     alert('Geocode was not successful for the following reason: ' + status);
+                                }
+
+                                action.ready.earlyVoteMarkerIndex++;
+                                if (action.ready.earlyVoteMarkerIndex < action.ready.earlyVoteSites.length) {
+                                    action.ready.addEarlyVoteMarkers(waitBeforeNext);
                                 }
                             });
                     }
                 }
             });
-
-            action.ready.earlyVoteMarkerIndex++;
-
-            if (action.ready.earlyVoteMarkerIndex < action.ready.earlyVoteSites.length) {
-                action.ready.addEarlyVoteMarkers();
-            }
         },
-            500
+            timeout
         );
     }
 
