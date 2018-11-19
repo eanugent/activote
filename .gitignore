@@ -1134,3 +1134,8 @@ Activote/Content/config.codekit3
 *.codekit3
 Activote/Content/config.codekit3
 *.cs
+/Activote2018.bak
+/Pingdom Report.pdf
+/Activote2018.bak
+/Pingdom Report.pdf
+*.sqlite
